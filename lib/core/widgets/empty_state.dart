@@ -10,7 +10,12 @@ class EmptyState extends StatelessWidget {
   final String? actionLabel;
   final VoidCallback? onAction;
 
-  const EmptyState({super.key, this.message = AppStringsGlobal.emptyStateMessage, this.actionLabel, this.onAction});
+  const EmptyState({
+    super.key,
+    this.message = AppStringsGlobal.emptyStateMessage,
+    this.actionLabel,
+    this.onAction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class EmptyState extends StatelessWidget {
           if (actionLabel != null && onAction != null) ...<Widget>[
             const SizedBox(height: 12),
             ElevatedButton(onPressed: onAction, child: Text(actionLabel!)),
-          ]
+          ],
         ],
       ),
     );

@@ -17,7 +17,10 @@ class Failure {
 
 /// Represents server failures (5xx or API errors).
 class ServerFailure extends Failure {
-  const ServerFailure({super.message = AppStringsGlobal.errorGeneric, super.code});
+  const ServerFailure({
+    super.message = AppStringsGlobal.errorGeneric,
+    super.code,
+  });
 }
 
 /// Network connectivity failure.
@@ -37,5 +40,8 @@ class ValidationFailure extends Failure {
 
 /// Unknown/unexpected failure.
 class UnknownFailure extends Failure {
-  const UnknownFailure({super.message = AppStringsGlobal.errorGeneric, super.code});
+  const UnknownFailure({
+    super.message = AppStringsGlobal.errorGeneric,
+    super.code,
+  });
 }

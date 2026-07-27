@@ -20,8 +20,12 @@ Failure mapExceptionToFailure(Object e) {
   if (e is ServerException) {
     return ServerFailure(message: e.message, code: e.statusCode?.toString());
   }
-  if (e is NetworkException) return const NetworkFailure();
-  if (e is CacheException) return const CacheFailure();
+  if (e is NetworkException) {
+    return const NetworkFailure();
+  }
+  if (e is CacheException) {
+    return const CacheFailure();
+  }
   if (e is ParsingException) {
     return const ValidationFailure(message: 'Parsing error');
   }
