@@ -17,14 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PriceRange {
-  /// Minimum price inclusive.
   double get min => throw _privateConstructorUsedError;
-
-  /// Maximum price inclusive.
   double get max => throw _privateConstructorUsedError;
-
-  /// ISO 4217 currency code (e.g., "USD", "EUR"). Kept as string to avoid
-  /// tying to a monetary library at this layer.
   String get currency => throw _privateConstructorUsedError;
 
   /// Create a copy of PriceRange
@@ -126,29 +120,23 @@ class __$$PriceRangeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PriceRangeImpl implements _PriceRange {
+class _$PriceRangeImpl extends _PriceRange {
   const _$PriceRangeImpl({
     required this.min,
     required this.max,
     required this.currency,
-  });
+  }) : super._();
 
-  /// Minimum price inclusive.
   @override
   final double min;
-
-  /// Maximum price inclusive.
   @override
   final double max;
-
-  /// ISO 4217 currency code (e.g., "USD", "EUR"). Kept as string to avoid
-  /// tying to a monetary library at this layer.
   @override
   final String currency;
 
   @override
   String toString() {
-    return 'PriceRange(min: $min, max: $max, currency: $currency)';
+    return 'PriceRange._internal(min: $min, max: $max, currency: $currency)';
   }
 
   @override
@@ -174,23 +162,18 @@ class _$PriceRangeImpl implements _PriceRange {
       __$$PriceRangeImplCopyWithImpl<_$PriceRangeImpl>(this, _$identity);
 }
 
-abstract class _PriceRange implements PriceRange {
+abstract class _PriceRange extends PriceRange {
   const factory _PriceRange({
     required final double min,
     required final double max,
     required final String currency,
   }) = _$PriceRangeImpl;
+  const _PriceRange._() : super._();
 
-  /// Minimum price inclusive.
   @override
   double get min;
-
-  /// Maximum price inclusive.
   @override
   double get max;
-
-  /// ISO 4217 currency code (e.g., "USD", "EUR"). Kept as string to avoid
-  /// tying to a monetary library at this layer.
   @override
   String get currency;
 
