@@ -1,12 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:travela/core/errors/network_exception.dart';
-import 'package:travela/core/errors/server_exception.dart';
-import 'package:travela/core/errors/unknown_exception.dart';
 import 'package:travela/core/logger/logger_interface.dart';
 
-/// Interceptor that converts Dio errors into project-specific exceptions and
-/// delegates logging. Interceptors should not throw Dio-specific types up the
-/// stack — convert them into domain-friendly exceptions here.
+/// Interceptor responsible for logging and lightweight preprocessing of
+/// errors. Actual mapping from DioException -> project-specific Exceptions is
+/// handled inside ApiClient so upper layers never see Dio types.
 class ErrorInterceptor extends Interceptor {
   final LoggerInterface _logger;
 
@@ -14,47 +11,13 @@ class ErrorInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    // Map common Dio error types to our exceptions.
     final Uri requestUri = err.requestOptions.uri;
-    _logger.warn('Handling network error for $requestUri');
+    _logger.warn('Network error for ${requestUri.toString()}');
+    _logger.warn('Error type: ${err.type}');
 
-    final Exception e = _mapDioError(err);
-    // Forward a wrapped DioError with new error to allow downstream handlers
-    // to react. We wrap into a DioError to keep handler.next signature but
-    // assign the new error object.
-    final DioException dioError = DioException(
-      requestOptions: err.requestOptions,
-      error: e,
-      response: err.response,
-      type: err.type,
-    );
-
-    return handler.next(dioError);
-  }
-
-  Exception _mapDioError(DioException err) {
-    if (err.type == DioExceptionType.connectionTimeout ||
-        err.type == DioExceptionType.sendTimeout ||
-        err.type == DioExceptionType.receiveTimeout) {
-      return const NetworkException('Request timed out');
-    }
-
-    if (err.type == DioExceptionType.badResponse) {
-      final int? status = err.response?.statusCode;
-      final String message = err.response?.statusMessage ?? 'Server error';
-      return ServerException(message, statusCode: status);
-    }
-
-    if (err.type == DioExceptionType.badCertificate ||
-        err.type == DioExceptionType.connectionError) {
-      return const NetworkException('Connection failed');
-    }
-
-    if (err.type == DioExceptionType.cancel) {
-      return const NetworkException('Request cancelled');
-    }
-
-    // Default fallback
-    return UnknownException(err.error, err.stackTrace);
+    // Keep behavior simple: log and forward the original DioException.
+    // ApiClient will translate DioException into project Exceptions so
+    // callers do not depend on Dio internals.
+    handler.next(err);
   }
 }
