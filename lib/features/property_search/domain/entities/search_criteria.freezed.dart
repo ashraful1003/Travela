@@ -1,0 +1,418 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'search_criteria.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
+
+/// @nodoc
+mixin _$SearchCriteria {
+  /// Preferred location for the search. Nullable for open searches.
+  Location? get location => throw _privateConstructorUsedError;
+
+  /// Optional check-in date.
+  DateTime? get checkIn => throw _privateConstructorUsedError;
+
+  /// Optional check-out date.
+  DateTime? get checkOut => throw _privateConstructorUsedError;
+
+  /// Optional price constraints.
+  PriceRange? get priceRange => throw _privateConstructorUsedError;
+
+  /// Guest composition; defaults to one adult when omitted.
+  GuestInfo? get guestInfo => throw _privateConstructorUsedError;
+
+  /// Free-text query (e.g., "beachfront", "city center").
+  String? get query => throw _privateConstructorUsedError;
+
+  /// Pagination: page index (0-based).
+  int get page => throw _privateConstructorUsedError;
+
+  /// Pagination: items per page.
+  int get pageSize => throw _privateConstructorUsedError;
+
+  /// Create a copy of SearchCriteria
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SearchCriteriaCopyWith<SearchCriteria> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchCriteriaCopyWith<$Res> {
+  factory $SearchCriteriaCopyWith(
+    SearchCriteria value,
+    $Res Function(SearchCriteria) then,
+  ) = _$SearchCriteriaCopyWithImpl<$Res, SearchCriteria>;
+  @useResult
+  $Res call({
+    Location? location,
+    DateTime? checkIn,
+    DateTime? checkOut,
+    PriceRange? priceRange,
+    GuestInfo? guestInfo,
+    String? query,
+    int page,
+    int pageSize,
+  });
+
+  $LocationCopyWith<$Res>? get location;
+  $PriceRangeCopyWith<$Res>? get priceRange;
+  $GuestInfoCopyWith<$Res>? get guestInfo;
+}
+
+/// @nodoc
+class _$SearchCriteriaCopyWithImpl<$Res, $Val extends SearchCriteria>
+    implements $SearchCriteriaCopyWith<$Res> {
+  _$SearchCriteriaCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of SearchCriteria
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = freezed,
+    Object? checkIn = freezed,
+    Object? checkOut = freezed,
+    Object? priceRange = freezed,
+    Object? guestInfo = freezed,
+    Object? query = freezed,
+    Object? page = null,
+    Object? pageSize = null,
+  }) {
+    return _then(
+      _value.copyWith(
+            location: freezed == location
+                ? _value.location
+                : location // ignore: cast_nullable_to_non_nullable
+                      as Location?,
+            checkIn: freezed == checkIn
+                ? _value.checkIn
+                : checkIn // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            checkOut: freezed == checkOut
+                ? _value.checkOut
+                : checkOut // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            priceRange: freezed == priceRange
+                ? _value.priceRange
+                : priceRange // ignore: cast_nullable_to_non_nullable
+                      as PriceRange?,
+            guestInfo: freezed == guestInfo
+                ? _value.guestInfo
+                : guestInfo // ignore: cast_nullable_to_non_nullable
+                      as GuestInfo?,
+            query: freezed == query
+                ? _value.query
+                : query // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            page: null == page
+                ? _value.page
+                : page // ignore: cast_nullable_to_non_nullable
+                      as int,
+            pageSize: null == pageSize
+                ? _value.pageSize
+                : pageSize // ignore: cast_nullable_to_non_nullable
+                      as int,
+          )
+          as $Val,
+    );
+  }
+
+  /// Create a copy of SearchCriteria
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationCopyWith<$Res>? get location {
+    if (_value.location == null) {
+      return null;
+    }
+
+    return $LocationCopyWith<$Res>(_value.location!, (value) {
+      return _then(_value.copyWith(location: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SearchCriteria
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PriceRangeCopyWith<$Res>? get priceRange {
+    if (_value.priceRange == null) {
+      return null;
+    }
+
+    return $PriceRangeCopyWith<$Res>(_value.priceRange!, (value) {
+      return _then(_value.copyWith(priceRange: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SearchCriteria
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GuestInfoCopyWith<$Res>? get guestInfo {
+    if (_value.guestInfo == null) {
+      return null;
+    }
+
+    return $GuestInfoCopyWith<$Res>(_value.guestInfo!, (value) {
+      return _then(_value.copyWith(guestInfo: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$SearchCriteriaImplCopyWith<$Res>
+    implements $SearchCriteriaCopyWith<$Res> {
+  factory _$$SearchCriteriaImplCopyWith(
+    _$SearchCriteriaImpl value,
+    $Res Function(_$SearchCriteriaImpl) then,
+  ) = __$$SearchCriteriaImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({
+    Location? location,
+    DateTime? checkIn,
+    DateTime? checkOut,
+    PriceRange? priceRange,
+    GuestInfo? guestInfo,
+    String? query,
+    int page,
+    int pageSize,
+  });
+
+  @override
+  $LocationCopyWith<$Res>? get location;
+  @override
+  $PriceRangeCopyWith<$Res>? get priceRange;
+  @override
+  $GuestInfoCopyWith<$Res>? get guestInfo;
+}
+
+/// @nodoc
+class __$$SearchCriteriaImplCopyWithImpl<$Res>
+    extends _$SearchCriteriaCopyWithImpl<$Res, _$SearchCriteriaImpl>
+    implements _$$SearchCriteriaImplCopyWith<$Res> {
+  __$$SearchCriteriaImplCopyWithImpl(
+    _$SearchCriteriaImpl _value,
+    $Res Function(_$SearchCriteriaImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of SearchCriteria
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = freezed,
+    Object? checkIn = freezed,
+    Object? checkOut = freezed,
+    Object? priceRange = freezed,
+    Object? guestInfo = freezed,
+    Object? query = freezed,
+    Object? page = null,
+    Object? pageSize = null,
+  }) {
+    return _then(
+      _$SearchCriteriaImpl(
+        location: freezed == location
+            ? _value.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as Location?,
+        checkIn: freezed == checkIn
+            ? _value.checkIn
+            : checkIn // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        checkOut: freezed == checkOut
+            ? _value.checkOut
+            : checkOut // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        priceRange: freezed == priceRange
+            ? _value.priceRange
+            : priceRange // ignore: cast_nullable_to_non_nullable
+                  as PriceRange?,
+        guestInfo: freezed == guestInfo
+            ? _value.guestInfo
+            : guestInfo // ignore: cast_nullable_to_non_nullable
+                  as GuestInfo?,
+        query: freezed == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        page: null == page
+            ? _value.page
+            : page // ignore: cast_nullable_to_non_nullable
+                  as int,
+        pageSize: null == pageSize
+            ? _value.pageSize
+            : pageSize // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$SearchCriteriaImpl implements _SearchCriteria {
+  const _$SearchCriteriaImpl({
+    this.location,
+    this.checkIn,
+    this.checkOut,
+    this.priceRange,
+    this.guestInfo,
+    this.query,
+    this.page = 0,
+    this.pageSize = 20,
+  });
+
+  /// Preferred location for the search. Nullable for open searches.
+  @override
+  final Location? location;
+
+  /// Optional check-in date.
+  @override
+  final DateTime? checkIn;
+
+  /// Optional check-out date.
+  @override
+  final DateTime? checkOut;
+
+  /// Optional price constraints.
+  @override
+  final PriceRange? priceRange;
+
+  /// Guest composition; defaults to one adult when omitted.
+  @override
+  final GuestInfo? guestInfo;
+
+  /// Free-text query (e.g., "beachfront", "city center").
+  @override
+  final String? query;
+
+  /// Pagination: page index (0-based).
+  @override
+  @JsonKey()
+  final int page;
+
+  /// Pagination: items per page.
+  @override
+  @JsonKey()
+  final int pageSize;
+
+  @override
+  String toString() {
+    return 'SearchCriteria(location: $location, checkIn: $checkIn, checkOut: $checkOut, priceRange: $priceRange, guestInfo: $guestInfo, query: $query, page: $page, pageSize: $pageSize)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchCriteriaImpl &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.checkIn, checkIn) || other.checkIn == checkIn) &&
+            (identical(other.checkOut, checkOut) ||
+                other.checkOut == checkOut) &&
+            (identical(other.priceRange, priceRange) ||
+                other.priceRange == priceRange) &&
+            (identical(other.guestInfo, guestInfo) ||
+                other.guestInfo == guestInfo) &&
+            (identical(other.query, query) || other.query == query) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.pageSize, pageSize) ||
+                other.pageSize == pageSize));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    runtimeType,
+    location,
+    checkIn,
+    checkOut,
+    priceRange,
+    guestInfo,
+    query,
+    page,
+    pageSize,
+  );
+
+  /// Create a copy of SearchCriteria
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchCriteriaImplCopyWith<_$SearchCriteriaImpl> get copyWith =>
+      __$$SearchCriteriaImplCopyWithImpl<_$SearchCriteriaImpl>(
+        this,
+        _$identity,
+      );
+}
+
+abstract class _SearchCriteria implements SearchCriteria {
+  const factory _SearchCriteria({
+    final Location? location,
+    final DateTime? checkIn,
+    final DateTime? checkOut,
+    final PriceRange? priceRange,
+    final GuestInfo? guestInfo,
+    final String? query,
+    final int page,
+    final int pageSize,
+  }) = _$SearchCriteriaImpl;
+
+  /// Preferred location for the search. Nullable for open searches.
+  @override
+  Location? get location;
+
+  /// Optional check-in date.
+  @override
+  DateTime? get checkIn;
+
+  /// Optional check-out date.
+  @override
+  DateTime? get checkOut;
+
+  /// Optional price constraints.
+  @override
+  PriceRange? get priceRange;
+
+  /// Guest composition; defaults to one adult when omitted.
+  @override
+  GuestInfo? get guestInfo;
+
+  /// Free-text query (e.g., "beachfront", "city center").
+  @override
+  String? get query;
+
+  /// Pagination: page index (0-based).
+  @override
+  int get page;
+
+  /// Pagination: items per page.
+  @override
+  int get pageSize;
+
+  /// Create a copy of SearchCriteria
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchCriteriaImplCopyWith<_$SearchCriteriaImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
