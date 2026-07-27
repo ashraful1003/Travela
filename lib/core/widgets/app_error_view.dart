@@ -11,16 +11,16 @@ class AppErrorView extends StatelessWidget {
   final VoidCallback? onRetry;
 
   /// Creates an [AppErrorView].
-  const AppErrorView({super.key, required this.message, this.onRetry});
+  const AppErrorView({required this.message, super.key, this.onRetry});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
+        children: <Widget>[
           Text(message, textAlign: TextAlign.center),
-          if (onRetry != null) ...[
+          if (onRetry != null) ...<Widget>[
             const SizedBox(height: 12),
             ElevatedButton(onPressed: onRetry, child: const Text('Retry')),
           ],

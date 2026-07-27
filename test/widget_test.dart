@@ -14,7 +14,7 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const App());
 
-    // Verify that home page title is present.
-    expect(find.text('Property Search'), findsOneWidget);
+    // Verify that home page title is present in AppBar and body.
+    expect(find.text('Property Search'), findsNWidgets(2));
   });
 }
