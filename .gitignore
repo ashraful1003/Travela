@@ -52,12 +52,5 @@ app.*.map.json
 android/.gradle/
 android/.idea/
 
-# macOS
-.DS_Store
-
 # Local environment configs
 .env
-
-lib/features/property_search/data/README.md
-lib/features/property_search/README.md
-ENGINEERING_GUIDELINES.md
