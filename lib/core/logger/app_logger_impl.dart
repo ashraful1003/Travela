@@ -12,7 +12,9 @@ class AppLoggerImpl implements LoggerInterface {
   void debug(String message) => _logger.d(message);
 
   @override
-  void error(String message, [Object? error, StackTrace? stackTrace]) => _logger.e(message, error, stackTrace);
+  void error(String message, [Object? error, StackTrace? stackTrace]) {
+    _logger.e(message, error, stackTrace);
+  }
 
   @override
   void info(String message) => _logger.i(message);

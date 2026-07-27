@@ -10,7 +10,7 @@ import 'package:travela/core/network/interceptors/logging_interceptor.dart';
 /// interceptors. The returned Dio should be registered as a singleton in DI.
 Dio createDio(Environment env, LoggerInterface logger) {
   final BaseOptions baseOptions = BaseOptions(
-    baseUrl: env.name == 'production' ? '' : '', // Intentionally empty: do not hardcode URLs here.
+    baseUrl: env.baseUrl,
     connectTimeout: const Duration(seconds: 10),
     receiveTimeout: const Duration(seconds: 15),
     sendTimeout: const Duration(seconds: 10),

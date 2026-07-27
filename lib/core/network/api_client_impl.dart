@@ -24,7 +24,7 @@ class ApiClientImpl implements ApiClient {
     CancelToken? cancelToken,
   }) async {
     try {
-      final Response res = await _dio.get(
+      final Response<dynamic> res = await _dio.get(
         path,
         queryParameters: queryParameters,
         options: Options(headers: headers),
@@ -46,7 +46,7 @@ class ApiClientImpl implements ApiClient {
     CancelToken? cancelToken,
   }) async {
     try {
-      final Response res = await _dio.post(
+      final Response<dynamic> res = await _dio.post(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -69,7 +69,7 @@ class ApiClientImpl implements ApiClient {
     CancelToken? cancelToken,
   }) async {
     try {
-      final Response res = await _dio.put(
+      final Response<dynamic> res = await _dio.put(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -92,7 +92,7 @@ class ApiClientImpl implements ApiClient {
     CancelToken? cancelToken,
   }) async {
     try {
-      final Response res = await _dio.patch(
+      final Response<dynamic> res = await _dio.patch(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -115,7 +115,7 @@ class ApiClientImpl implements ApiClient {
     CancelToken? cancelToken,
   }) async {
     try {
-      final Response res = await _dio.delete(
+      final Response<dynamic> res = await _dio.delete(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -129,14 +129,14 @@ class ApiClientImpl implements ApiClient {
     }
   }
 
-  T _processResponse<T>(Response res) {
+  T _processResponse<T>(Response<dynamic> res) {
     // If expected type is Response, cast directly
     if (T == Response || T == dynamic) {
       return res.data as T;
     }
 
     // If response is null, return null casted
-    final data = res.data;
+    final Object? data = res.data;
     if (data == null) {
       return data as T;
     }
