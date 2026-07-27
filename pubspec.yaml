@@ -1,5 +1,5 @@
 name: travela
-description: "Travela - SSE-based travel property search app. Feature-first Clean Architecture."
+description: "Travela - SSE-based travel property search app."
 # Prevent accidental publishing to pub.dev
 publish_to: 'none'
 
