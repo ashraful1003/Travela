@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:travela/core/config/environment.dart';
-import 'package:travela/core/logger/app_logger.dart';
+import 'package:travela/core/logger/app_logger_impl.dart';
+import 'package:travela/core/logger/logger_interface.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -17,8 +18,8 @@ Future<void> setupDependencies() async {
     sl.registerLazySingleton<Environment>(Environment.new);
   }
 
-  if (!sl.isRegistered<AppLogger>()) {
-    sl.registerLazySingleton<AppLogger>(AppLogger.new);
+  if (!sl.isRegistered<LoggerInterface>()) {
+    sl.registerLazySingleton<LoggerInterface>(AppLoggerImpl.new);
   }
 
   // No feature-level registrations here. Feature modules should expose init
