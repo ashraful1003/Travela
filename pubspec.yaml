@@ -1,0 +1,47 @@
+name: travela
+description: "Travela - SSE-based travel property search app. Feature-first Clean Architecture."
+# Prevent accidental publishing to pub.dev
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.8.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Core libraries
+  flutter_bloc: ^8.1.2
+  dio: ^5.3.1
+  pretty_dio_logger: ^1.4.0
+  get_it: ^7.6.0
+
+  # Codegen annotations
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.9.0
+
+  # Utilities
+  equatable: ^2.0.5
+  cached_network_image: ^3.2.3
+  intl: ^0.18.1
+  logger: ^1.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+  # Code generation
+  build_runner: ^2.4.6
+  freezed: ^2.3.2
+  json_serializable: ^6.7.0
+
+# Flutter-specific config
+flutter:
+  uses-material-design: true
+
+# Team convention: generated files (e.g., *.freezed.dart, *.g.dart) are committed to the repo
+# to keep CI and code review deterministic. Do NOT ignore those patterns in .gitignore.

@@ -1,0 +1,21 @@
+# This file configures the analyzer for Travela.
+# Start from the recommended Flutter lints and enable a stricter subset used by the team.
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Enforce avoiding print in production code
+    avoid_print: true
+
+    # Preferred immutable constructors & literals
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
+
+    # Imports and directives
+    directives_ordering: true
+    always_use_package_imports: true
+
+    # Misc
+    unnecessary_lambdas: true
+
+# Keep additional project-specific rule tweaks here if needed.
