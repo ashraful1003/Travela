@@ -32,8 +32,9 @@ class SearchCriteria with _$SearchCriteria {
     /// Optional price constraints.
     PriceRange? priceRange,
 
-    /// Guest composition; defaults to one adult when omitted.
-    GuestInfo? guestInfo,
+    /// Guest composition; defaults to one adult when omitted. This field is
+    /// non-nullable to avoid repeated null checks across callers.
+    @Default(GuestInfo()) GuestInfo guestInfo,
 
     /// Free-text query (e.g., "beachfront", "city center").
     String? query,

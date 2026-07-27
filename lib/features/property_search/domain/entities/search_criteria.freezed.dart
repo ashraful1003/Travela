@@ -29,8 +29,9 @@ mixin _$SearchCriteria {
   /// Optional price constraints.
   PriceRange? get priceRange => throw _privateConstructorUsedError;
 
-  /// Guest composition; defaults to one adult when omitted.
-  GuestInfo? get guestInfo => throw _privateConstructorUsedError;
+  /// Guest composition; defaults to one adult when omitted. This field is
+  /// non-nullable to avoid repeated null checks across callers.
+  GuestInfo get guestInfo => throw _privateConstructorUsedError;
 
   /// Free-text query (e.g., "beachfront", "city center").
   String? get query => throw _privateConstructorUsedError;
@@ -60,7 +61,7 @@ abstract class $SearchCriteriaCopyWith<$Res> {
     DateTime? checkIn,
     DateTime? checkOut,
     PriceRange? priceRange,
-    GuestInfo? guestInfo,
+    GuestInfo guestInfo,
     String? query,
     int page,
     int pageSize,
@@ -68,7 +69,7 @@ abstract class $SearchCriteriaCopyWith<$Res> {
 
   $LocationCopyWith<$Res>? get location;
   $PriceRangeCopyWith<$Res>? get priceRange;
-  $GuestInfoCopyWith<$Res>? get guestInfo;
+  $GuestInfoCopyWith<$Res> get guestInfo;
 }
 
 /// @nodoc
@@ -90,7 +91,7 @@ class _$SearchCriteriaCopyWithImpl<$Res, $Val extends SearchCriteria>
     Object? checkIn = freezed,
     Object? checkOut = freezed,
     Object? priceRange = freezed,
-    Object? guestInfo = freezed,
+    Object? guestInfo = null,
     Object? query = freezed,
     Object? page = null,
     Object? pageSize = null,
@@ -113,10 +114,10 @@ class _$SearchCriteriaCopyWithImpl<$Res, $Val extends SearchCriteria>
                 ? _value.priceRange
                 : priceRange // ignore: cast_nullable_to_non_nullable
                       as PriceRange?,
-            guestInfo: freezed == guestInfo
+            guestInfo: null == guestInfo
                 ? _value.guestInfo
                 : guestInfo // ignore: cast_nullable_to_non_nullable
-                      as GuestInfo?,
+                      as GuestInfo,
             query: freezed == query
                 ? _value.query
                 : query // ignore: cast_nullable_to_non_nullable
@@ -166,12 +167,8 @@ class _$SearchCriteriaCopyWithImpl<$Res, $Val extends SearchCriteria>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $GuestInfoCopyWith<$Res>? get guestInfo {
-    if (_value.guestInfo == null) {
-      return null;
-    }
-
-    return $GuestInfoCopyWith<$Res>(_value.guestInfo!, (value) {
+  $GuestInfoCopyWith<$Res> get guestInfo {
+    return $GuestInfoCopyWith<$Res>(_value.guestInfo, (value) {
       return _then(_value.copyWith(guestInfo: value) as $Val);
     });
   }
@@ -191,7 +188,7 @@ abstract class _$$SearchCriteriaImplCopyWith<$Res>
     DateTime? checkIn,
     DateTime? checkOut,
     PriceRange? priceRange,
-    GuestInfo? guestInfo,
+    GuestInfo guestInfo,
     String? query,
     int page,
     int pageSize,
@@ -202,7 +199,7 @@ abstract class _$$SearchCriteriaImplCopyWith<$Res>
   @override
   $PriceRangeCopyWith<$Res>? get priceRange;
   @override
-  $GuestInfoCopyWith<$Res>? get guestInfo;
+  $GuestInfoCopyWith<$Res> get guestInfo;
 }
 
 /// @nodoc
@@ -223,7 +220,7 @@ class __$$SearchCriteriaImplCopyWithImpl<$Res>
     Object? checkIn = freezed,
     Object? checkOut = freezed,
     Object? priceRange = freezed,
-    Object? guestInfo = freezed,
+    Object? guestInfo = null,
     Object? query = freezed,
     Object? page = null,
     Object? pageSize = null,
@@ -246,10 +243,10 @@ class __$$SearchCriteriaImplCopyWithImpl<$Res>
             ? _value.priceRange
             : priceRange // ignore: cast_nullable_to_non_nullable
                   as PriceRange?,
-        guestInfo: freezed == guestInfo
+        guestInfo: null == guestInfo
             ? _value.guestInfo
             : guestInfo // ignore: cast_nullable_to_non_nullable
-                  as GuestInfo?,
+                  as GuestInfo,
         query: freezed == query
             ? _value.query
             : query // ignore: cast_nullable_to_non_nullable
@@ -275,7 +272,7 @@ class _$SearchCriteriaImpl implements _SearchCriteria {
     this.checkIn,
     this.checkOut,
     this.priceRange,
-    this.guestInfo,
+    this.guestInfo = const GuestInfo(),
     this.query,
     this.page = 0,
     this.pageSize = 20,
@@ -297,9 +294,11 @@ class _$SearchCriteriaImpl implements _SearchCriteria {
   @override
   final PriceRange? priceRange;
 
-  /// Guest composition; defaults to one adult when omitted.
+  /// Guest composition; defaults to one adult when omitted. This field is
+  /// non-nullable to avoid repeated null checks across callers.
   @override
-  final GuestInfo? guestInfo;
+  @JsonKey()
+  final GuestInfo guestInfo;
 
   /// Free-text query (e.g., "beachfront", "city center").
   @override
@@ -371,7 +370,7 @@ abstract class _SearchCriteria implements SearchCriteria {
     final DateTime? checkIn,
     final DateTime? checkOut,
     final PriceRange? priceRange,
-    final GuestInfo? guestInfo,
+    final GuestInfo guestInfo,
     final String? query,
     final int page,
     final int pageSize,
@@ -393,9 +392,10 @@ abstract class _SearchCriteria implements SearchCriteria {
   @override
   PriceRange? get priceRange;
 
-  /// Guest composition; defaults to one adult when omitted.
+  /// Guest composition; defaults to one adult when omitted. This field is
+  /// non-nullable to avoid repeated null checks across callers.
   @override
-  GuestInfo? get guestInfo;
+  GuestInfo get guestInfo;
 
   /// Free-text query (e.g., "beachfront", "city center").
   @override
