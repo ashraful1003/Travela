@@ -62,7 +62,16 @@ class _PropertySearchFormState extends State<PropertySearchForm> {
         ),
         const SizedBox(height: 12),
         DateRangeSelector(
-          onCheckIn: (DateTime? d) => setState(() => _checkIn = d),
+          checkIn: _checkIn,
+          checkOut: _checkOut,
+          onCheckIn: (DateTime? d) => setState(() {
+            _checkIn = d;
+            // Keep the range valid: drop a check-out that now falls before
+            // the newly picked check-in.
+            if (_checkOut != null && d != null && _checkOut!.isBefore(d)) {
+              _checkOut = null;
+            }
+          }),
           onCheckOut: (DateTime? d) => setState(() => _checkOut = d),
         ),
         const SizedBox(height: 12),
