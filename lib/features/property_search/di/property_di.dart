@@ -1,10 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:travela/core/network/api_client.dart';
-// New autocomplete imports
+import 'package:travela/core/network/stream_client.dart';
+import 'package:travela/core/network/stream_client_impl.dart';
 import 'package:travela/features/property_search/data/datasources/location_remote_data_source.dart';
 import 'package:travela/features/property_search/data/datasources/location_remote_data_source_impl.dart';
 import 'package:travela/features/property_search/data/datasources/property_remote_data_source.dart';
 import 'package:travela/features/property_search/data/datasources/property_remote_data_source_impl.dart';
+import 'package:travela/features/property_search/data/datasources/property_stream_remote_data_source.dart';
+import 'package:travela/features/property_search/data/datasources/property_stream_remote_data_source_impl.dart';
 import 'package:travela/features/property_search/data/repositories/location_repository_impl.dart';
 import 'package:travela/features/property_search/data/repositories/property_repository_impl.dart';
 import 'package:travela/features/property_search/domain/repositories/location_repository.dart';
@@ -25,9 +29,25 @@ Future<void> initPropertySearchModule(GetIt sl) async {
     );
   }
 
+  // Stream client for SSE
+  if (!sl.isRegistered<StreamClient>()) {
+    sl.registerLazySingleton<StreamClient>(
+      () => StreamClientImpl(sl.get<Dio>()),
+    );
+  }
+
+  if (!sl.isRegistered<PropertyStreamRemoteDataSource>()) {
+    sl.registerLazySingleton<PropertyStreamRemoteDataSource>(
+      () => PropertyStreamRemoteDataSourceImpl(sl.get<StreamClient>()),
+    );
+  }
+
   if (!sl.isRegistered<PropertyRepository>()) {
     sl.registerLazySingleton<PropertyRepository>(
-      () => PropertyRepositoryImpl(sl.get<PropertyRemoteDataSource>()),
+      () => PropertyRepositoryImpl(
+        sl.get<PropertyRemoteDataSource>(),
+        sl.get<PropertyStreamRemoteDataSource>(),
+      ),
     );
   }
 
