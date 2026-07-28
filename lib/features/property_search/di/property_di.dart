@@ -15,6 +15,7 @@ import 'package:travela/features/property_search/domain/repositories/location_re
 import 'package:travela/features/property_search/domain/repositories/property_repository.dart';
 import 'package:travela/features/property_search/domain/usecases/search_locations.dart';
 import 'package:travela/features/property_search/domain/usecases/search_properties.dart';
+import 'package:travela/features/property_search/domain/usecases/stream_search_properties.dart';
 import 'package:travela/features/property_search/presentation/bloc/location_autocomplete_bloc.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_bloc.dart';
 
@@ -71,6 +72,12 @@ Future<void> initPropertySearchModule(GetIt sl) async {
     );
   }
 
+  if (!sl.isRegistered<StreamSearchProperties>()) {
+    sl.registerLazySingleton<StreamSearchProperties>(
+      () => StreamSearchProperties(sl.get<PropertyRepository>()),
+    );
+  }
+
   if (!sl.isRegistered<SearchLocations>()) {
     sl.registerLazySingleton<SearchLocations>(
       () => SearchLocations(sl.get<LocationRepository>()),
@@ -87,7 +94,7 @@ Future<void> initPropertySearchModule(GetIt sl) async {
   // Presentation: Blocs
   if (!sl.isRegistered<PropertySearchBloc>()) {
     sl.registerFactory<PropertySearchBloc>(
-      () => PropertySearchBloc(sl.get<SearchProperties>()),
+      () => PropertySearchBloc(sl.get<StreamSearchProperties>()),
     );
   }
 
