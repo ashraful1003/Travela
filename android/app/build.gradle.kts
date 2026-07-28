@@ -8,7 +8,9 @@ plugins {
 android {
     namespace = "app.ashraful.travela.travela"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    // Use the highest Android NDK required by plugins to ensure compatibility.
+    // path_provider_android & sqflite_android require NDK 27.0.12077973
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
