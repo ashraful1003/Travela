@@ -19,17 +19,53 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PropertySearchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SearchCriteria criteria) searchSubmitted,
+    required TResult Function(
+      String location,
+      DateTime? checkIn,
+      DateTime? checkOut,
+      double minPrice,
+      double maxPrice,
+      String currency,
+      int adults,
+      int children,
+      int infants,
+      String? query,
+    )
+    searchSubmitted,
     required TResult Function() retryRequested,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SearchCriteria criteria)? searchSubmitted,
+    TResult? Function(
+      String location,
+      DateTime? checkIn,
+      DateTime? checkOut,
+      double minPrice,
+      double maxPrice,
+      String currency,
+      int adults,
+      int children,
+      int infants,
+      String? query,
+    )?
+    searchSubmitted,
     TResult? Function()? retryRequested,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SearchCriteria criteria)? searchSubmitted,
+    TResult Function(
+      String location,
+      DateTime? checkIn,
+      DateTime? checkOut,
+      double minPrice,
+      double maxPrice,
+      String currency,
+      int adults,
+      int children,
+      int infants,
+      String? query,
+    )?
+    searchSubmitted,
     TResult Function()? retryRequested,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -80,9 +116,18 @@ abstract class _$$SearchSubmittedImplCopyWith<$Res> {
     $Res Function(_$SearchSubmittedImpl) then,
   ) = __$$SearchSubmittedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({SearchCriteria criteria});
-
-  $SearchCriteriaCopyWith<$Res> get criteria;
+  $Res call({
+    String location,
+    DateTime? checkIn,
+    DateTime? checkOut,
+    double minPrice,
+    double maxPrice,
+    String currency,
+    int adults,
+    int children,
+    int infants,
+    String? query,
+  });
 }
 
 /// @nodoc
@@ -98,39 +143,105 @@ class __$$SearchSubmittedImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? criteria = null}) {
+  $Res call({
+    Object? location = null,
+    Object? checkIn = freezed,
+    Object? checkOut = freezed,
+    Object? minPrice = null,
+    Object? maxPrice = null,
+    Object? currency = null,
+    Object? adults = null,
+    Object? children = null,
+    Object? infants = null,
+    Object? query = freezed,
+  }) {
     return _then(
       _$SearchSubmittedImpl(
-        null == criteria
-            ? _value.criteria
-            : criteria // ignore: cast_nullable_to_non_nullable
-                  as SearchCriteria,
+        location: null == location
+            ? _value.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as String,
+        checkIn: freezed == checkIn
+            ? _value.checkIn
+            : checkIn // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        checkOut: freezed == checkOut
+            ? _value.checkOut
+            : checkOut // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        minPrice: null == minPrice
+            ? _value.minPrice
+            : minPrice // ignore: cast_nullable_to_non_nullable
+                  as double,
+        maxPrice: null == maxPrice
+            ? _value.maxPrice
+            : maxPrice // ignore: cast_nullable_to_non_nullable
+                  as double,
+        currency: null == currency
+            ? _value.currency
+            : currency // ignore: cast_nullable_to_non_nullable
+                  as String,
+        adults: null == adults
+            ? _value.adults
+            : adults // ignore: cast_nullable_to_non_nullable
+                  as int,
+        children: null == children
+            ? _value.children
+            : children // ignore: cast_nullable_to_non_nullable
+                  as int,
+        infants: null == infants
+            ? _value.infants
+            : infants // ignore: cast_nullable_to_non_nullable
+                  as int,
+        query: freezed == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String?,
       ),
     );
-  }
-
-  /// Create a copy of PropertySearchEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SearchCriteriaCopyWith<$Res> get criteria {
-    return $SearchCriteriaCopyWith<$Res>(_value.criteria, (value) {
-      return _then(_value.copyWith(criteria: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$SearchSubmittedImpl implements _SearchSubmitted {
-  const _$SearchSubmittedImpl(this.criteria);
+  const _$SearchSubmittedImpl({
+    required this.location,
+    this.checkIn,
+    this.checkOut,
+    required this.minPrice,
+    required this.maxPrice,
+    required this.currency,
+    required this.adults,
+    required this.children,
+    required this.infants,
+    this.query,
+  });
 
   @override
-  final SearchCriteria criteria;
+  final String location;
+  @override
+  final DateTime? checkIn;
+  @override
+  final DateTime? checkOut;
+  @override
+  final double minPrice;
+  @override
+  final double maxPrice;
+  @override
+  final String currency;
+  @override
+  final int adults;
+  @override
+  final int children;
+  @override
+  final int infants;
+  @override
+  final String? query;
 
   @override
   String toString() {
-    return 'PropertySearchEvent.searchSubmitted(criteria: $criteria)';
+    return 'PropertySearchEvent.searchSubmitted(location: $location, checkIn: $checkIn, checkOut: $checkOut, minPrice: $minPrice, maxPrice: $maxPrice, currency: $currency, adults: $adults, children: $children, infants: $infants, query: $query)';
   }
 
   @override
@@ -138,12 +249,38 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchSubmittedImpl &&
-            (identical(other.criteria, criteria) ||
-                other.criteria == criteria));
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.checkIn, checkIn) || other.checkIn == checkIn) &&
+            (identical(other.checkOut, checkOut) ||
+                other.checkOut == checkOut) &&
+            (identical(other.minPrice, minPrice) ||
+                other.minPrice == minPrice) &&
+            (identical(other.maxPrice, maxPrice) ||
+                other.maxPrice == maxPrice) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
+            (identical(other.adults, adults) || other.adults == adults) &&
+            (identical(other.children, children) ||
+                other.children == children) &&
+            (identical(other.infants, infants) || other.infants == infants) &&
+            (identical(other.query, query) || other.query == query));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, criteria);
+  int get hashCode => Object.hash(
+    runtimeType,
+    location,
+    checkIn,
+    checkOut,
+    minPrice,
+    maxPrice,
+    currency,
+    adults,
+    children,
+    infants,
+    query,
+  );
 
   /// Create a copy of PropertySearchEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -159,30 +296,99 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SearchCriteria criteria) searchSubmitted,
+    required TResult Function(
+      String location,
+      DateTime? checkIn,
+      DateTime? checkOut,
+      double minPrice,
+      double maxPrice,
+      String currency,
+      int adults,
+      int children,
+      int infants,
+      String? query,
+    )
+    searchSubmitted,
     required TResult Function() retryRequested,
   }) {
-    return searchSubmitted(criteria);
+    return searchSubmitted(
+      location,
+      checkIn,
+      checkOut,
+      minPrice,
+      maxPrice,
+      currency,
+      adults,
+      children,
+      infants,
+      query,
+    );
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SearchCriteria criteria)? searchSubmitted,
+    TResult? Function(
+      String location,
+      DateTime? checkIn,
+      DateTime? checkOut,
+      double minPrice,
+      double maxPrice,
+      String currency,
+      int adults,
+      int children,
+      int infants,
+      String? query,
+    )?
+    searchSubmitted,
     TResult? Function()? retryRequested,
   }) {
-    return searchSubmitted?.call(criteria);
+    return searchSubmitted?.call(
+      location,
+      checkIn,
+      checkOut,
+      minPrice,
+      maxPrice,
+      currency,
+      adults,
+      children,
+      infants,
+      query,
+    );
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SearchCriteria criteria)? searchSubmitted,
+    TResult Function(
+      String location,
+      DateTime? checkIn,
+      DateTime? checkOut,
+      double minPrice,
+      double maxPrice,
+      String currency,
+      int adults,
+      int children,
+      int infants,
+      String? query,
+    )?
+    searchSubmitted,
     TResult Function()? retryRequested,
     required TResult orElse(),
   }) {
     if (searchSubmitted != null) {
-      return searchSubmitted(criteria);
+      return searchSubmitted(
+        location,
+        checkIn,
+        checkOut,
+        minPrice,
+        maxPrice,
+        currency,
+        adults,
+        children,
+        infants,
+        query,
+      );
     }
     return orElse();
   }
@@ -220,10 +426,29 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
 }
 
 abstract class _SearchSubmitted implements PropertySearchEvent {
-  const factory _SearchSubmitted(final SearchCriteria criteria) =
-      _$SearchSubmittedImpl;
+  const factory _SearchSubmitted({
+    required final String location,
+    final DateTime? checkIn,
+    final DateTime? checkOut,
+    required final double minPrice,
+    required final double maxPrice,
+    required final String currency,
+    required final int adults,
+    required final int children,
+    required final int infants,
+    final String? query,
+  }) = _$SearchSubmittedImpl;
 
-  SearchCriteria get criteria;
+  String get location;
+  DateTime? get checkIn;
+  DateTime? get checkOut;
+  double get minPrice;
+  double get maxPrice;
+  String get currency;
+  int get adults;
+  int get children;
+  int get infants;
+  String? get query;
 
   /// Create a copy of PropertySearchEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -275,7 +500,19 @@ class _$RetryRequestedImpl implements _RetryRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SearchCriteria criteria) searchSubmitted,
+    required TResult Function(
+      String location,
+      DateTime? checkIn,
+      DateTime? checkOut,
+      double minPrice,
+      double maxPrice,
+      String currency,
+      int adults,
+      int children,
+      int infants,
+      String? query,
+    )
+    searchSubmitted,
     required TResult Function() retryRequested,
   }) {
     return retryRequested();
@@ -284,7 +521,19 @@ class _$RetryRequestedImpl implements _RetryRequested {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SearchCriteria criteria)? searchSubmitted,
+    TResult? Function(
+      String location,
+      DateTime? checkIn,
+      DateTime? checkOut,
+      double minPrice,
+      double maxPrice,
+      String currency,
+      int adults,
+      int children,
+      int infants,
+      String? query,
+    )?
+    searchSubmitted,
     TResult? Function()? retryRequested,
   }) {
     return retryRequested?.call();
@@ -293,7 +542,19 @@ class _$RetryRequestedImpl implements _RetryRequested {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SearchCriteria criteria)? searchSubmitted,
+    TResult Function(
+      String location,
+      DateTime? checkIn,
+      DateTime? checkOut,
+      double minPrice,
+      double maxPrice,
+      String currency,
+      int adults,
+      int children,
+      int infants,
+      String? query,
+    )?
+    searchSubmitted,
     TResult Function()? retryRequested,
     required TResult orElse(),
   }) {
