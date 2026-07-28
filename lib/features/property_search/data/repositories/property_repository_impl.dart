@@ -7,6 +7,7 @@ import 'package:travela/features/property_search/data/models/property_dto.dart';
 import 'package:travela/features/property_search/data/models/property_list_dto.dart';
 import 'package:travela/features/property_search/domain/entities/property.dart';
 import 'package:travela/features/property_search/domain/entities/search_criteria.dart';
+import 'package:travela/features/property_search/domain/entities/search_stream_event.dart';
 import 'package:travela/features/property_search/domain/repositories/property_repository.dart';
 
 /// Repository implementation for PropertyRepository.
@@ -27,9 +28,7 @@ class PropertyRepositoryImpl implements PropertyRepository {
     try {
       final Map<String, dynamic> queryParams = _buildQueryParams(criteria);
       final PropertyListDto propertyListDto = await _remoteDataSource
-          .fetchProperties(
-        queryParameters: queryParams,
-      );
+          .fetchProperties(queryParameters: queryParams);
 
       final List<Property> entities = propertyListDto.toDomainList();
       return success<List<Property>>(entities);
@@ -41,8 +40,9 @@ class PropertyRepositoryImpl implements PropertyRepository {
   @override
   Future<Either<Failure, Property>> getPropertyById(String id) async {
     try {
-      final PropertyDto propertyDto = await _remoteDataSource
-          .fetchPropertyById(id);
+      final PropertyDto propertyDto = await _remoteDataSource.fetchPropertyById(
+        id,
+      );
       final Property entity = propertyDto.toDomain();
       return success<Property>(entity);
     } catch (e) {
@@ -93,5 +93,18 @@ class PropertyRepositoryImpl implements PropertyRepository {
     params['infants'] = c.guestInfo.infants;
 
     return params;
+  }
+
+  @override
+  Stream<Either<Failure, SearchStreamEvent>> streamSearchProperties(
+    SearchCriteria criteria,
+  ) {
+    // Streaming search is not implemented in the current Data layer.
+    // This minimal implementation intentionally throws to signal the
+    // absence of SSE support. Concrete streaming implementations will be
+    // provided in Pack 05C (or in platform-specific modules).
+    return Stream<Either<Failure, SearchStreamEvent>>.error(
+      UnimplementedError('streamSearchProperties is not implemented'),
+    );
   }
 }
