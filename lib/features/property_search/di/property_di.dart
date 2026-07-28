@@ -4,6 +4,8 @@ import 'package:travela/features/property_search/data/datasources/property_remot
 import 'package:travela/features/property_search/data/datasources/property_remote_data_source_impl.dart';
 import 'package:travela/features/property_search/data/repositories/property_repository_impl.dart';
 import 'package:travela/features/property_search/domain/repositories/property_repository.dart';
+import 'package:travela/features/property_search/domain/usecases/search_properties.dart';
+import 'package:travela/features/property_search/presentation/bloc/property_search_bloc.dart';
 
 /// Feature-level dependency registration for Property Search.
 ///
@@ -19,6 +21,20 @@ Future<void> initPropertySearchModule(GetIt sl) async {
   if (!sl.isRegistered<PropertyRepository>()) {
     sl.registerLazySingleton<PropertyRepository>(
       () => PropertyRepositoryImpl(sl.get<PropertyRemoteDataSource>()),
+    );
+  }
+
+  // Domain use cases
+  if (!sl.isRegistered<SearchProperties>()) {
+    sl.registerLazySingleton<SearchProperties>(
+      () => SearchProperties(sl.get<PropertyRepository>()),
+    );
+  }
+
+  // Presentation: Bloc
+  if (!sl.isRegistered<PropertySearchBloc>()) {
+    sl.registerFactory<PropertySearchBloc>(
+      () => PropertySearchBloc(sl.get<SearchProperties>()),
     );
   }
 }
