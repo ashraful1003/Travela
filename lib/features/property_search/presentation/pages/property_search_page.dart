@@ -4,11 +4,11 @@ import 'package:travela/core/di/service_locator.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_bloc.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_event.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_state.dart';
-import 'package:travela/features/property_search/presentation/widgets/property_search_form.dart';
-import 'package:travela/features/property_search/presentation/widgets/loading_view.dart';
 import 'package:travela/features/property_search/presentation/widgets/empty_view.dart';
 import 'package:travela/features/property_search/presentation/widgets/error_view.dart';
+import 'package:travela/features/property_search/presentation/widgets/loading_view.dart';
 import 'package:travela/features/property_search/presentation/widgets/property_list.dart';
+import 'package:travela/features/property_search/presentation/widgets/property_search_form.dart';
 
 /// Property Search Page
 ///
@@ -36,7 +36,7 @@ class PropertySearchPage extends StatelessWidget {
                 switch (state.status) {
                   case PropertySearchStatus.initial:
                     return PropertySearchForm(
-                      onSearch: (location, checkIn, checkOut, minPrice, maxPrice, adults, children, infants) =>
+                      onSearch: (String location, DateTime? checkIn, DateTime? checkOut, double minPrice, double maxPrice, int adults, int children, int infants) =>
                           context.read<PropertySearchBloc>().add(
                                 PropertySearchEvent.searchSubmitted(
                                   location: location,
@@ -58,9 +58,9 @@ class PropertySearchPage extends StatelessWidget {
                   case PropertySearchStatus.empty:
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
+                      children: <Widget>[
                         PropertySearchForm(
-                          onSearch: (location, checkIn, checkOut, minPrice, maxPrice, adults, children, infants) =>
+                          onSearch: (String location, DateTime? checkIn, DateTime? checkOut, double minPrice, double maxPrice, int adults, int children, int infants) =>
                               context.read<PropertySearchBloc>().add(
                                     PropertySearchEvent.searchSubmitted(
                                       location: location,
@@ -83,9 +83,9 @@ class PropertySearchPage extends StatelessWidget {
                   case PropertySearchStatus.success:
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
+                      children: <Widget>[
                         PropertySearchForm(
-                          onSearch: (location, checkIn, checkOut, minPrice, maxPrice, adults, children, infants) =>
+                          onSearch: (String location, DateTime? checkIn, DateTime? checkOut, double minPrice, double maxPrice, int adults, int children, int infants) =>
                               context.read<PropertySearchBloc>().add(
                                     PropertySearchEvent.searchSubmitted(
                                       location: location,
@@ -110,9 +110,9 @@ class PropertySearchPage extends StatelessWidget {
                   case PropertySearchStatus.failure:
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
+                      children: <Widget>[
                         PropertySearchForm(
-                          onSearch: (location, checkIn, checkOut, minPrice, maxPrice, adults, children, infants) =>
+                          onSearch: (String location, DateTime? checkIn, DateTime? checkOut, double minPrice, double maxPrice, int adults, int children, int infants) =>
                               context.read<PropertySearchBloc>().add(
                                     PropertySearchEvent.searchSubmitted(
                                       location: location,

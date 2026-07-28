@@ -13,14 +13,8 @@ class PropertySearchEvent with _$PropertySearchEvent {
   /// centralized mapping.
   const factory PropertySearchEvent.searchSubmitted({
     required String location,
-    DateTime? checkIn,
+    required double minPrice, required double maxPrice, required String currency, required int adults, required int children, required int infants, DateTime? checkIn,
     DateTime? checkOut,
-    required double minPrice,
-    required double maxPrice,
-    required String currency,
-    required int adults,
-    required int children,
-    required int infants,
     String? query,
   }) = _SearchSubmitted;
 

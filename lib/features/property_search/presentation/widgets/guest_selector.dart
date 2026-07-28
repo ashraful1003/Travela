@@ -11,20 +11,20 @@ class GuestSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Use simple Buttons to illustrate; state management belongs to parent.
-    return Card(
+    return const Card(
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text('Guests', style: TextStyle(fontWeight: FontWeight.w600)),
-            const SizedBox(height: 8),
+            Text('Guests', style: TextStyle(fontWeight: FontWeight.w600)),
+            SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const _GuestCountLabel(label: 'Adults', count: 1),
-                const _GuestCountLabel(label: 'Children', count: 0),
-                const _GuestCountLabel(label: 'Infants', count: 0),
+                _GuestCountLabel(label: 'Adults', count: 1),
+                _GuestCountLabel(label: 'Children', count: 0),
+                _GuestCountLabel(label: 'Infants', count: 0),
               ],
             ),
           ],

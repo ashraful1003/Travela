@@ -5,7 +5,7 @@ import 'package:travela/features/property_search/presentation/widgets/property_c
 
 /// Displays a vertical list of property cards using Domain [Property] entities.
 class PropertyList extends StatelessWidget {
-  const PropertyList({super.key, required this.properties});
+  const PropertyList({required this.properties, super.key});
 
   final List<Property> properties;
 

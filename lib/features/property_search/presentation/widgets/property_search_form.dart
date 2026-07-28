@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:travela/features/property_search/domain/entities/selected_location.dart';
 import 'package:travela/features/property_search/presentation/widgets/date_range_selector.dart';
 import 'package:travela/features/property_search/presentation/widgets/guest_selector.dart';
-import 'package:travela/features/property_search/presentation/widgets/location_field.dart';
+import 'package:travela/features/property_search/presentation/widgets/location_autocomplete.dart';
 import 'package:travela/features/property_search/presentation/widgets/price_range_selector.dart';
 import 'package:travela/features/property_search/presentation/widgets/search_button.dart';
 
 /// Form that collects search inputs and exposes an [onSearch] callback used by
 /// the surrounding page to dispatch the search event to the BLoC.
 class PropertySearchForm extends StatefulWidget {
-  const PropertySearchForm({super.key, required this.onSearch});
+  const PropertySearchForm({required this.onSearch, super.key});
 
   /// onSearch exposes only primitive values. Presentation must not build
   /// domain entities that can throw during construction. The Bloc will build
@@ -50,14 +51,16 @@ class _PropertySearchFormState extends State<PropertySearchForm> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            LocationField(onChanged: (v) => setState(() => _locationText = v)),
+            LocationAutocomplete(onSelected: (SelectedLocation sel) => setState(() => _locationText = sel.name)),
+            // Keep onChanged update for free text as fallback
+            // LocationAutocomplete will dispatch queries to the Bloc internally.
             const SizedBox(height: 12),
             DateRangeSelector(
-              onCheckIn: (d) => setState(() => _checkIn = d),
-              onCheckOut: (d) => setState(() => _checkOut = d),
+              onCheckIn: (DateTime? d) => setState(() => _checkIn = d),
+              onCheckOut: (DateTime? d) => setState(() => _checkOut = d),
             ),
             const SizedBox(height: 12),
-            GuestSelector(onChanged: (map) {
+            GuestSelector(onChanged: (Map<String, int> map) {
               setState(() {
                 _adults = map['adults'] ?? _adults;
                 _children = map['children'] ?? _children;
