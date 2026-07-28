@@ -1,80 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:travela/features/property_search/domain/entities/guest_info.dart';
+import 'package:travela/features/property_search/domain/entities/location.dart';
+import 'package:travela/features/property_search/domain/entities/price_range.dart';
+import 'package:travela/features/property_search/domain/entities/search_criteria.dart';
 import 'package:travela/features/property_search/presentation/widgets/date_range_selector.dart';
 import 'package:travela/features/property_search/presentation/widgets/guest_selector.dart';
-import 'package:travela/features/property_search/presentation/widgets/loading_view.dart';
 import 'package:travela/features/property_search/presentation/widgets/location_field.dart';
 import 'package:travela/features/property_search/presentation/widgets/price_range_selector.dart';
 import 'package:travela/features/property_search/presentation/widgets/search_button.dart';
 
-/// Form that collects search inputs and displays results.
-///
-/// This widget is presentation-only and exposes callbacks for integration
-/// with the BLoC in later sprints.
-class PropertySearchForm extends StatelessWidget {
-  const PropertySearchForm({super.key});
+/// Form that collects search inputs and exposes an [onSearch] callback used by
+/// the surrounding page to dispatch the search event to the BLoC.
+class PropertySearchForm extends StatefulWidget {
+  const PropertySearchForm({super.key, required this.onSearch});
 
-  // Placeholder callbacks — replace with Bloc callbacks later
-  void _onSearch({
-    required String location,
-    required int adults,
-    required int children,
-    required int infants,
-    required RangeValues priceRange,
-    DateTime? checkIn,
-    DateTime? checkOut,
-  }) {
-    // Placeholder: integrate with Bloc on next sprint.
+  final ValueChanged<SearchCriteria> onSearch;
+
+  @override
+  State<PropertySearchForm> createState() => _PropertySearchFormState();
+}
+
+class _PropertySearchFormState extends State<PropertySearchForm> {
+  String _locationText = '';
+  DateTime? _checkIn;
+  DateTime? _checkOut;
+  RangeValues _priceRange = const RangeValues(50, 300);
+  int _adults = 1;
+  int _children = 0;
+  int _infants = 0;
+
+  void _handleSearch() {
+    // Build simple domain objects from collected inputs. Keep UI free of
+    // business validation; domain constructors may throw and BLoC will handle
+    // failures via centralized mapping.
+    final Location? location = _locationText.isNotEmpty ? Location(name: _locationText) : null;
+
+    final PriceRange priceRange = PriceRange(min: _priceRange.start, max: _priceRange.end, currency: 'USD');
+
+    final SearchCriteria criteria = SearchCriteria(
+      location: location,
+      checkIn: _checkIn,
+      checkOut: _checkOut,
+      priceRange: priceRange,
+      guestInfo: GuestInfo(adults: _adults, children: _children, infants: _infants),
+    );
+
+    widget.onSearch(criteria);
   }
 
   @override
   Widget build(BuildContext context) {
-    // Local controllers/state would normally be provided by a stateful
-    // widget or Bloc; keep stateless and use local variables for illustration.
-    final RangeValues defaultRange = const RangeValues(50, 300);
-
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const LocationField(),
+            LocationField(onChanged: (v) => setState(() => _locationText = v)),
             const SizedBox(height: 12),
-            const DateRangeSelector(),
+            DateRangeSelector(
+              onCheckIn: (d) => setState(() => _checkIn = d),
+              onCheckOut: (d) => setState(() => _checkOut = d),
+            ),
             const SizedBox(height: 12),
-            const GuestSelector(),
+            GuestSelector(onChanged: (map) {
+              setState(() {
+                _adults = map['adults'] ?? _adults;
+                _children = map['children'] ?? _children;
+                _infants = map['infants'] ?? _infants;
+              });
+            }),
             const SizedBox(height: 12),
             PriceRangeSelector(
-              initialRange: defaultRange,
-              onChanged: (RangeValues range) {},
+              initialRange: _priceRange,
+              onChanged: (RangeValues range) => setState(() => _priceRange = range),
             ),
             const SizedBox(height: 16),
-            SearchButton(
-              onPressed: () => _onSearch(
-                location: '',
-                checkIn: null,
-                checkOut: null,
-                adults: 1,
-                children: 0,
-                infants: 0,
-                priceRange: defaultRange,
-              ),
-            ),
+            SearchButton(onPressed: _handleSearch),
             const SizedBox(height: 20),
 
-            // Results placeholder area — in a real app this would react to Bloc
-            const Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  // Show loading / empty / error / list UI as required. These
-                  // are static placeholders for now.
-                  LoadingView(),
-                  // EmptyView(),
-                  // ErrorView(message: 'Failed to load results'),
-                  // PropertyList(properties: []),
-                ],
-              ),
-            ),
+            // Results area is handled by the page that composes this form.
+            const Expanded(child: SizedBox()),
           ],
         );
       },

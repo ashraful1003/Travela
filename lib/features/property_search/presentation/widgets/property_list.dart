@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:travela/features/property_search/domain/entities/property.dart';
 import 'package:travela/features/property_search/presentation/widgets/property_card.dart';
 
-/// Displays a vertical list of property cards.
+/// Displays a vertical list of property cards using Domain [Property] entities.
 class PropertyList extends StatelessWidget {
-  const PropertyList({required this.properties, super.key});
+  const PropertyList({super.key, required this.properties});
 
-  final List<Map<String, String>> properties;
+  final List<Property> properties;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +19,11 @@ class PropertyList extends StatelessWidget {
       itemCount: properties.length,
       separatorBuilder: (_, __) => const SizedBox(height: 8),
       itemBuilder: (BuildContext context, int index) {
-        final Map<String, String> item = properties[index];
+        final Property item = properties[index];
         return PropertyCard(
-          title: item['title'] ?? 'Untitled',
-          subtitle: item['subtitle'] ?? '',
-          imageUrl: item['image'] ?? '',
+          title: item.title,
+          subtitle: item.location.name,
+          imageUrl: item.photoUrls.isNotEmpty ? item.photoUrls.first : null,
         );
       },
     );
