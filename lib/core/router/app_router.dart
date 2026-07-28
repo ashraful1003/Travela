@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travela/features/property_search/presentation/pages/home_page.dart';
+import 'package:travela/features/property_search/presentation/pages/property_search_page.dart';
 
 /// Centralized application routes.
 class AppRoutes {
@@ -14,7 +14,7 @@ class AppRouter {
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.home:
-        return MaterialPageRoute<void>(builder: (_) => const HomePage());
+        return MaterialPageRoute<void>(builder: (_) => const PropertySearchPage());
       default:
         return MaterialPageRoute<void>(
           builder: (_) => const Scaffold(

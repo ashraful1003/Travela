@@ -8,13 +8,25 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:travela/app.dart';
+import 'package:travela/core/di/service_locator.dart';
+import 'package:travela/features/property_search/di/property_di.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  setUpAll(() async {
+    // PropertySearchPage resolves its Blocs from GetIt, same as `main()`.
+    await setupDependencies();
+    await initPropertySearchModule(sl);
+  });
+
+  testWidgets('App boots directly into the Property Search feature', (
+    WidgetTester tester,
+  ) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const App());
 
-    // Verify that home page title is present in AppBar and body.
-    expect(find.text('Property Search'), findsNWidgets(2));
+    // The home route must resolve to the real feature page (not a dead-end
+    // placeholder), shown by its AppBar title and its search form.
+    expect(find.text('Property Search'), findsOneWidget);
+    expect(find.text('Search'), findsOneWidget);
   });
 }

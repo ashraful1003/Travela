@@ -5,9 +5,36 @@ import 'package:travela/features/property_search/presentation/widgets/property_c
 
 /// Displays a vertical list of property cards using Domain [Property] entities.
 class PropertyList extends StatelessWidget {
-  const PropertyList({super.key, required this.properties});
+  const PropertyList({required this.properties, super.key});
 
   final List<Property> properties;
+
+  /// Builds the sliver form of this list so a caller (e.g. the search page)
+  /// can lay it out inside a single page-level [CustomScrollView] alongside
+  /// the filter form, rather than nesting an independently-scrolling list
+  /// inside a fixed-height box.
+  static Widget sliver(List<Property> properties) {
+    return SliverList.builder(
+      itemCount: properties.length,
+      itemBuilder: (BuildContext context, int index) => Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: _buildCard(properties[index]),
+      ),
+    );
+  }
+
+  static Widget _buildCard(Property item) {
+    return PropertyCard(
+      title: item.title,
+      address: item.address,
+      price: item.price,
+      offerPrice: item.offerPrice,
+      reviewsAvg: item.reviewsAvg,
+      reviewsCount: item.reviewsCount,
+      imageUrl: item.imageUrls.isNotEmpty ? item.imageUrls.first : null,
+      badgeLabel: item.featuredBadgeLabel,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +45,8 @@ class PropertyList extends StatelessWidget {
     return ListView.separated(
       itemCount: properties.length,
       separatorBuilder: (_, __) => const SizedBox(height: 8),
-      itemBuilder: (BuildContext context, int index) {
-        final Property item = properties[index];
-        return PropertyCard(
-          title: item.title,
-          subtitle: item.location.name,
-          imageUrl: item.photoUrls.isNotEmpty ? item.photoUrls.first : null,
-        );
-      },
+      itemBuilder: (BuildContext context, int index) =>
+          _buildCard(properties[index]),
     );
   }
 }

@@ -21,6 +21,10 @@ mixin _$PropertySearchState {
   List<Property> get properties => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
+  /// Metadata emitted by the streaming search (e.g. search id, estimated
+  /// total). Null until the first metadata event of a search arrives.
+  SearchMetadata? get metadata => throw _privateConstructorUsedError;
+
   /// Create a copy of PropertySearchState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -39,7 +43,10 @@ abstract class $PropertySearchStateCopyWith<$Res> {
     PropertySearchStatus status,
     List<Property> properties,
     Failure? failure,
+    SearchMetadata? metadata,
   });
+
+  $SearchMetadataCopyWith<$Res>? get metadata;
 }
 
 /// @nodoc
@@ -60,6 +67,7 @@ class _$PropertySearchStateCopyWithImpl<$Res, $Val extends PropertySearchState>
     Object? status = null,
     Object? properties = null,
     Object? failure = freezed,
+    Object? metadata = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -75,9 +83,27 @@ class _$PropertySearchStateCopyWithImpl<$Res, $Val extends PropertySearchState>
                 ? _value.failure
                 : failure // ignore: cast_nullable_to_non_nullable
                       as Failure?,
+            metadata: freezed == metadata
+                ? _value.metadata
+                : metadata // ignore: cast_nullable_to_non_nullable
+                      as SearchMetadata?,
           )
           as $Val,
     );
+  }
+
+  /// Create a copy of PropertySearchState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SearchMetadataCopyWith<$Res>? get metadata {
+    if (_value.metadata == null) {
+      return null;
+    }
+
+    return $SearchMetadataCopyWith<$Res>(_value.metadata!, (value) {
+      return _then(_value.copyWith(metadata: value) as $Val);
+    });
   }
 }
 
@@ -94,7 +120,11 @@ abstract class _$$PropertySearchStateImplCopyWith<$Res>
     PropertySearchStatus status,
     List<Property> properties,
     Failure? failure,
+    SearchMetadata? metadata,
   });
+
+  @override
+  $SearchMetadataCopyWith<$Res>? get metadata;
 }
 
 /// @nodoc
@@ -114,6 +144,7 @@ class __$$PropertySearchStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? properties = null,
     Object? failure = freezed,
+    Object? metadata = freezed,
   }) {
     return _then(
       _$PropertySearchStateImpl(
@@ -129,6 +160,10 @@ class __$$PropertySearchStateImplCopyWithImpl<$Res>
             ? _value.failure
             : failure // ignore: cast_nullable_to_non_nullable
                   as Failure?,
+        metadata: freezed == metadata
+            ? _value.metadata
+            : metadata // ignore: cast_nullable_to_non_nullable
+                  as SearchMetadata?,
       ),
     );
   }
@@ -141,6 +176,7 @@ class _$PropertySearchStateImpl extends _PropertySearchState {
     this.status = PropertySearchStatus.initial,
     final List<Property> properties = const <Property>[],
     this.failure,
+    this.metadata,
   }) : _properties = properties,
        super._();
 
@@ -159,9 +195,14 @@ class _$PropertySearchStateImpl extends _PropertySearchState {
   @override
   final Failure? failure;
 
+  /// Metadata emitted by the streaming search (e.g. search id, estimated
+  /// total). Null until the first metadata event of a search arrives.
+  @override
+  final SearchMetadata? metadata;
+
   @override
   String toString() {
-    return 'PropertySearchState(status: $status, properties: $properties, failure: $failure)';
+    return 'PropertySearchState(status: $status, properties: $properties, failure: $failure, metadata: $metadata)';
   }
 
   @override
@@ -174,7 +215,9 @@ class _$PropertySearchStateImpl extends _PropertySearchState {
               other._properties,
               _properties,
             ) &&
-            (identical(other.failure, failure) || other.failure == failure));
+            (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.metadata, metadata) ||
+                other.metadata == metadata));
   }
 
   @override
@@ -183,6 +226,7 @@ class _$PropertySearchStateImpl extends _PropertySearchState {
     status,
     const DeepCollectionEquality().hash(_properties),
     failure,
+    metadata,
   );
 
   /// Create a copy of PropertySearchState
@@ -202,6 +246,7 @@ abstract class _PropertySearchState extends PropertySearchState {
     final PropertySearchStatus status,
     final List<Property> properties,
     final Failure? failure,
+    final SearchMetadata? metadata,
   }) = _$PropertySearchStateImpl;
   const _PropertySearchState._() : super._();
 
@@ -211,6 +256,11 @@ abstract class _PropertySearchState extends PropertySearchState {
   List<Property> get properties;
   @override
   Failure? get failure;
+
+  /// Metadata emitted by the streaming search (e.g. search id, estimated
+  /// total). Null until the first metadata event of a search arrives.
+  @override
+  SearchMetadata? get metadata;
 
   /// Create a copy of PropertySearchState
   /// with the given fields replaced by the non-null parameter values.

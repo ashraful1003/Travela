@@ -17,8 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchCriteria {
-  /// Preferred location for the search. Nullable for open searches.
-  Location? get location => throw _privateConstructorUsedError;
+  /// Location picked from autocomplete. Carries id/lat/lng plus the
+  /// ranking metadata (within/tier_1/tier_2) the search endpoint expects.
+  /// The search API requires either a location id or lat/lng, so this is
+  /// mandatory in practice even though it's nullable at the type level.
+  SelectedLocation? get location => throw _privateConstructorUsedError;
 
   /// Optional check-in date.
   DateTime? get checkIn => throw _privateConstructorUsedError;
@@ -36,10 +39,10 @@ mixin _$SearchCriteria {
   /// Free-text query (e.g., "beachfront", "city center").
   String? get query => throw _privateConstructorUsedError;
 
-  /// Pagination: page index (0-based).
+  /// Pagination: 1-based page number, matching the API.
   int get page => throw _privateConstructorUsedError;
 
-  /// Pagination: items per page.
+  /// Pagination: items per page (API default 20, max 50).
   int get pageSize => throw _privateConstructorUsedError;
 
   /// Create a copy of SearchCriteria
@@ -57,7 +60,7 @@ abstract class $SearchCriteriaCopyWith<$Res> {
   ) = _$SearchCriteriaCopyWithImpl<$Res, SearchCriteria>;
   @useResult
   $Res call({
-    Location? location,
+    SelectedLocation? location,
     DateTime? checkIn,
     DateTime? checkOut,
     PriceRange? priceRange,
@@ -67,7 +70,7 @@ abstract class $SearchCriteriaCopyWith<$Res> {
     int pageSize,
   });
 
-  $LocationCopyWith<$Res>? get location;
+  $SelectedLocationCopyWith<$Res>? get location;
   $PriceRangeCopyWith<$Res>? get priceRange;
   $GuestInfoCopyWith<$Res> get guestInfo;
 }
@@ -101,7 +104,7 @@ class _$SearchCriteriaCopyWithImpl<$Res, $Val extends SearchCriteria>
             location: freezed == location
                 ? _value.location
                 : location // ignore: cast_nullable_to_non_nullable
-                      as Location?,
+                      as SelectedLocation?,
             checkIn: freezed == checkIn
                 ? _value.checkIn
                 : checkIn // ignore: cast_nullable_to_non_nullable
@@ -139,12 +142,12 @@ class _$SearchCriteriaCopyWithImpl<$Res, $Val extends SearchCriteria>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $LocationCopyWith<$Res>? get location {
+  $SelectedLocationCopyWith<$Res>? get location {
     if (_value.location == null) {
       return null;
     }
 
-    return $LocationCopyWith<$Res>(_value.location!, (value) {
+    return $SelectedLocationCopyWith<$Res>(_value.location!, (value) {
       return _then(_value.copyWith(location: value) as $Val);
     });
   }
@@ -184,7 +187,7 @@ abstract class _$$SearchCriteriaImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Location? location,
+    SelectedLocation? location,
     DateTime? checkIn,
     DateTime? checkOut,
     PriceRange? priceRange,
@@ -195,7 +198,7 @@ abstract class _$$SearchCriteriaImplCopyWith<$Res>
   });
 
   @override
-  $LocationCopyWith<$Res>? get location;
+  $SelectedLocationCopyWith<$Res>? get location;
   @override
   $PriceRangeCopyWith<$Res>? get priceRange;
   @override
@@ -230,7 +233,7 @@ class __$$SearchCriteriaImplCopyWithImpl<$Res>
         location: freezed == location
             ? _value.location
             : location // ignore: cast_nullable_to_non_nullable
-                  as Location?,
+                  as SelectedLocation?,
         checkIn: freezed == checkIn
             ? _value.checkIn
             : checkIn // ignore: cast_nullable_to_non_nullable
@@ -274,13 +277,16 @@ class _$SearchCriteriaImpl implements _SearchCriteria {
     this.priceRange,
     this.guestInfo = const GuestInfo(),
     this.query,
-    this.page = 0,
+    this.page = 1,
     this.pageSize = 20,
   });
 
-  /// Preferred location for the search. Nullable for open searches.
+  /// Location picked from autocomplete. Carries id/lat/lng plus the
+  /// ranking metadata (within/tier_1/tier_2) the search endpoint expects.
+  /// The search API requires either a location id or lat/lng, so this is
+  /// mandatory in practice even though it's nullable at the type level.
   @override
-  final Location? location;
+  final SelectedLocation? location;
 
   /// Optional check-in date.
   @override
@@ -304,12 +310,12 @@ class _$SearchCriteriaImpl implements _SearchCriteria {
   @override
   final String? query;
 
-  /// Pagination: page index (0-based).
+  /// Pagination: 1-based page number, matching the API.
   @override
   @JsonKey()
   final int page;
 
-  /// Pagination: items per page.
+  /// Pagination: items per page (API default 20, max 50).
   @override
   @JsonKey()
   final int pageSize;
@@ -366,7 +372,7 @@ class _$SearchCriteriaImpl implements _SearchCriteria {
 
 abstract class _SearchCriteria implements SearchCriteria {
   const factory _SearchCriteria({
-    final Location? location,
+    final SelectedLocation? location,
     final DateTime? checkIn,
     final DateTime? checkOut,
     final PriceRange? priceRange,
@@ -376,9 +382,12 @@ abstract class _SearchCriteria implements SearchCriteria {
     final int pageSize,
   }) = _$SearchCriteriaImpl;
 
-  /// Preferred location for the search. Nullable for open searches.
+  /// Location picked from autocomplete. Carries id/lat/lng plus the
+  /// ranking metadata (within/tier_1/tier_2) the search endpoint expects.
+  /// The search API requires either a location id or lat/lng, so this is
+  /// mandatory in practice even though it's nullable at the type level.
   @override
-  Location? get location;
+  SelectedLocation? get location;
 
   /// Optional check-in date.
   @override
@@ -401,11 +410,11 @@ abstract class _SearchCriteria implements SearchCriteria {
   @override
   String? get query;
 
-  /// Pagination: page index (0-based).
+  /// Pagination: 1-based page number, matching the API.
   @override
   int get page;
 
-  /// Pagination: items per page.
+  /// Pagination: items per page (API default 20, max 50).
   @override
   int get pageSize;
 
