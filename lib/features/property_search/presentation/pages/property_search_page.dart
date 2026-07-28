@@ -4,7 +4,6 @@ import 'package:travela/core/di/service_locator.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_bloc.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_event.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_state.dart';
-import 'package:travela/features/property_search/domain/entities/search_criteria.dart';
 import 'package:travela/features/property_search/presentation/widgets/property_search_form.dart';
 import 'package:travela/features/property_search/presentation/widgets/loading_view.dart';
 import 'package:travela/features/property_search/presentation/widgets/empty_view.dart';
@@ -37,9 +36,20 @@ class PropertySearchPage extends StatelessWidget {
                 switch (state.status) {
                   case PropertySearchStatus.initial:
                     return PropertySearchForm(
-                      onSearch: (SearchCriteria criteria) => context.read<PropertySearchBloc>().add(
-                            PropertySearchEvent.searchSubmitted(criteria),
-                          ),
+                      onSearch: (location, checkIn, checkOut, minPrice, maxPrice, adults, children, infants) =>
+                          context.read<PropertySearchBloc>().add(
+                                PropertySearchEvent.searchSubmitted(
+                                  location: location,
+                                  checkIn: checkIn,
+                                  checkOut: checkOut,
+                                  minPrice: minPrice,
+                                  maxPrice: maxPrice,
+                                  currency: 'BDT',
+                                  adults: adults,
+                                  children: children,
+                                  infants: infants,
+                                ),
+                              ),
                     );
 
                   case PropertySearchStatus.loading:
@@ -50,9 +60,20 @@ class PropertySearchPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         PropertySearchForm(
-                          onSearch: (SearchCriteria criteria) => context.read<PropertySearchBloc>().add(
-                                PropertySearchEvent.searchSubmitted(criteria),
-                              ),
+                          onSearch: (location, checkIn, checkOut, minPrice, maxPrice, adults, children, infants) =>
+                              context.read<PropertySearchBloc>().add(
+                                    PropertySearchEvent.searchSubmitted(
+                                      location: location,
+                                      checkIn: checkIn,
+                                      checkOut: checkOut,
+                                      minPrice: minPrice,
+                                      maxPrice: maxPrice,
+                                      currency: 'BDT',
+                                      adults: adults,
+                                      children: children,
+                                      infants: infants,
+                                    ),
+                                  ),
                         ),
                         const SizedBox(height: 16),
                         const Expanded(child: EmptyView()),
@@ -64,9 +85,20 @@ class PropertySearchPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         PropertySearchForm(
-                          onSearch: (SearchCriteria criteria) => context.read<PropertySearchBloc>().add(
-                                PropertySearchEvent.searchSubmitted(criteria),
-                              ),
+                          onSearch: (location, checkIn, checkOut, minPrice, maxPrice, adults, children, infants) =>
+                              context.read<PropertySearchBloc>().add(
+                                    PropertySearchEvent.searchSubmitted(
+                                      location: location,
+                                      checkIn: checkIn,
+                                      checkOut: checkOut,
+                                      minPrice: minPrice,
+                                      maxPrice: maxPrice,
+                                      currency: 'BDT',
+                                      adults: adults,
+                                      children: children,
+                                      infants: infants,
+                                    ),
+                                  ),
                         ),
                         const SizedBox(height: 16),
                         Expanded(
@@ -80,9 +112,20 @@ class PropertySearchPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         PropertySearchForm(
-                          onSearch: (SearchCriteria criteria) => context.read<PropertySearchBloc>().add(
-                                PropertySearchEvent.searchSubmitted(criteria),
-                              ),
+                          onSearch: (location, checkIn, checkOut, minPrice, maxPrice, adults, children, infants) =>
+                              context.read<PropertySearchBloc>().add(
+                                    PropertySearchEvent.searchSubmitted(
+                                      location: location,
+                                      checkIn: checkIn,
+                                      checkOut: checkOut,
+                                      minPrice: minPrice,
+                                      maxPrice: maxPrice,
+                                      currency: 'BDT',
+                                      adults: adults,
+                                      children: children,
+                                      infants: infants,
+                                    ),
+                                  ),
                         ),
                         const SizedBox(height: 16),
                         Expanded(

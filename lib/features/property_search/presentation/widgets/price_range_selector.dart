@@ -22,16 +22,19 @@ class PriceRangeSelector extends StatelessWidget {
           children: <Widget>[
             const Text('Price range', style: TextStyle(fontWeight: FontWeight.w600)),
             const SizedBox(height: 8),
-            RangeSlider(
-              values: initialRange,
-              min: 0,
-              max: 1000,
-              divisions: 20,
-              labels: RangeLabels(
-                initialRange.start.round().toString(),
-                initialRange.end.round().toString(),
+            Semantics(
+              label: 'Price range slider',
+              child: RangeSlider(
+                values: initialRange,
+                min: 0,
+                max: 1000,
+                divisions: 20,
+                labels: RangeLabels(
+                  initialRange.start.round().toString(),
+                  initialRange.end.round().toString(),
+                ),
+                onChanged: onChanged,
               ),
-              onChanged: onChanged,
             ),
           ],
         ),

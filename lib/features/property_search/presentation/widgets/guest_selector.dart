@@ -11,20 +11,20 @@ class GuestSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Use simple Buttons to illustrate; state management belongs to parent.
-    return const Card(
+    return Card(
       child: Padding(
-        padding: EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Guests', style: TextStyle(fontWeight: FontWeight.w600)),
-            SizedBox(height: 8),
+            const Text('Guests', style: TextStyle(fontWeight: FontWeight.w600)),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                _GuestCountLabel(label: 'Adults', count: 1),
-                _GuestCountLabel(label: 'Children', count: 0),
-                _GuestCountLabel(label: 'Infants', count: 0),
+                const _GuestCountLabel(label: 'Adults', count: 1),
+                const _GuestCountLabel(label: 'Children', count: 0),
+                const _GuestCountLabel(label: 'Infants', count: 0),
               ],
             ),
           ],
@@ -47,9 +47,9 @@ class _GuestCountLabel extends StatelessWidget {
         const SizedBox(height: 6),
         Row(
           children: <Widget>[
-            const IconButton(onPressed: null, icon: Icon(Icons.remove)),
+            IconButton(onPressed: null, icon: const Icon(Icons.remove), tooltip: 'Decrease $label',),
             Text('$count'),
-            const IconButton(onPressed: null, icon: Icon(Icons.add)),
+            IconButton(onPressed: null, icon: const Icon(Icons.add), tooltip: 'Increase $label',),
           ],
         ),
       ],

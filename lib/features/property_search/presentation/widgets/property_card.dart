@@ -21,7 +21,7 @@ class PropertyCard extends StatelessWidget {
               color: Colors.grey.shade200,
               child: imageUrl != null && imageUrl!.isNotEmpty
                   ? Image.network(imageUrl!, fit: BoxFit.cover)
-                  : const Icon(Icons.home, size: 40, color: Colors.grey),
+                  : const Icon(Icons.home, size: 40, color: Colors.grey, semanticLabel: 'Property image placeholder'),
             ),
             const SizedBox(width: 12),
             Expanded(

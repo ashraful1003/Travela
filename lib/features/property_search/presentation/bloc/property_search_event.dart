@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:travela/features/property_search/domain/entities/search_criteria.dart';
 
 part 'property_search_event.freezed.dart';
 
@@ -7,8 +6,23 @@ part 'property_search_event.freezed.dart';
 @freezed
 class PropertySearchEvent with _$PropertySearchEvent {
   /// Dispatched when the user submits the search form.
-  const factory PropertySearchEvent.searchSubmitted(SearchCriteria criteria) =
-      _SearchSubmitted;
+  ///
+  /// Carries only primitive values — Presentation must not construct domain
+  /// entities that enforce business invariants. The Bloc will build domain
+  /// objects (e.g., PriceRange) so validation exceptions flow through the
+  /// centralized mapping.
+  const factory PropertySearchEvent.searchSubmitted({
+    required String location,
+    DateTime? checkIn,
+    DateTime? checkOut,
+    required double minPrice,
+    required double maxPrice,
+    required String currency,
+    required int adults,
+    required int children,
+    required int infants,
+    String? query,
+  }) = _SearchSubmitted;
 
   /// Dispatched when the user requests a retry after an error.
   const factory PropertySearchEvent.retryRequested() = _RetryRequested;

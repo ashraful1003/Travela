@@ -12,15 +12,22 @@ class LocationField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: const InputDecoration(
-        labelText: 'Location',
-        hintText: 'Where are you going?',
-        prefixIcon: Icon(Icons.location_on),
+    return Tooltip(
+      message: 'Enter location',
+      child: Semantics(
+        textField: true,
+        label: 'Location input',
+        child: TextFormField(
+          decoration: const InputDecoration(
+            labelText: 'Location',
+            hintText: 'Where are you going?',
+            prefixIcon: Icon(Icons.location_on, semanticLabel: 'Location'),
+          ),
+          onChanged: onChanged,
+          onTap: onTap,
+          textInputAction: TextInputAction.next,
+        ),
       ),
-      onChanged: onChanged,
-      onTap: onTap,
-      textInputAction: TextInputAction.next,
     );
   }
 }

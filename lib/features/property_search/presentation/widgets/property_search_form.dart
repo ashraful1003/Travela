@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:travela/features/property_search/domain/entities/guest_info.dart';
-import 'package:travela/features/property_search/domain/entities/location.dart';
-import 'package:travela/features/property_search/domain/entities/price_range.dart';
-import 'package:travela/features/property_search/domain/entities/search_criteria.dart';
 import 'package:travela/features/property_search/presentation/widgets/date_range_selector.dart';
 import 'package:travela/features/property_search/presentation/widgets/guest_selector.dart';
 import 'package:travela/features/property_search/presentation/widgets/location_field.dart';
@@ -14,7 +10,10 @@ import 'package:travela/features/property_search/presentation/widgets/search_but
 class PropertySearchForm extends StatefulWidget {
   const PropertySearchForm({super.key, required this.onSearch});
 
-  final ValueChanged<SearchCriteria> onSearch;
+  /// onSearch exposes only primitive values. Presentation must not build
+  /// domain entities that can throw during construction. The Bloc will build
+  /// domain objects from these primitives.
+  final void Function(String location, DateTime? checkIn, DateTime? checkOut, double minPrice, double maxPrice, int adults, int children, int infants) onSearch;
 
   @override
   State<PropertySearchForm> createState() => _PropertySearchFormState();
@@ -30,22 +29,18 @@ class _PropertySearchFormState extends State<PropertySearchForm> {
   int _infants = 0;
 
   void _handleSearch() {
-    // Build simple domain objects from collected inputs. Keep UI free of
-    // business validation; domain constructors may throw and BLoC will handle
-    // failures via centralized mapping.
-    final Location? location = _locationText.isNotEmpty ? Location(name: _locationText) : null;
-
-    final PriceRange priceRange = PriceRange(min: _priceRange.start, max: _priceRange.end, currency: 'USD');
-
-    final SearchCriteria criteria = SearchCriteria(
-      location: location,
-      checkIn: _checkIn,
-      checkOut: _checkOut,
-      priceRange: priceRange,
-      guestInfo: GuestInfo(adults: _adults, children: _children, infants: _infants),
+    // Emit primitives only. Bloc will construct domain objects including
+    // PriceRange so any validation exceptions are handled centrally.
+    widget.onSearch(
+      _locationText,
+      _checkIn,
+      _checkOut,
+      _priceRange.start,
+      _priceRange.end,
+      _adults,
+      _children,
+      _infants,
     );
-
-    widget.onSearch(criteria);
   }
 
   @override
