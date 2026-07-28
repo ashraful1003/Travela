@@ -10,11 +10,9 @@ class SearchMetadataBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int? estimatedTotal = metadata.estimatedTotal;
-    final String resultWord = estimatedTotal == 1 ? 'result' : 'results';
-    final String label = estimatedTotal != null
-        ? 'Estimated $estimatedTotal $resultWord'
-        : 'Search in progress…';
+    final int totalCount = metadata.totalCount;
+    final String stayWord = totalCount == 1 ? 'stay' : 'stays';
+    final String label = '$totalCount $stayWord';
 
     return Row(
       children: <Widget>[

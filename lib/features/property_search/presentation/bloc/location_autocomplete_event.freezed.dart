@@ -20,32 +20,38 @@ mixin _$LocationAutocompleteEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) queryChanged,
+    required TResult Function(String query) searchRequested,
     required TResult Function(SelectedLocation location) locationSelected,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? queryChanged,
+    TResult? Function(String query)? searchRequested,
     TResult? Function(SelectedLocation location)? locationSelected,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? queryChanged,
+    TResult Function(String query)? searchRequested,
     TResult Function(SelectedLocation location)? locationSelected,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_QueryChanged value) queryChanged,
+    required TResult Function(_SearchRequested value) searchRequested,
     required TResult Function(_LocationSelected value) locationSelected,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_QueryChanged value)? queryChanged,
+    TResult? Function(_SearchRequested value)? searchRequested,
     TResult? Function(_LocationSelected value)? locationSelected,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_QueryChanged value)? queryChanged,
+    TResult Function(_SearchRequested value)? searchRequested,
     TResult Function(_LocationSelected value)? locationSelected,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -147,6 +153,7 @@ class _$QueryChangedImpl implements _QueryChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) queryChanged,
+    required TResult Function(String query) searchRequested,
     required TResult Function(SelectedLocation location) locationSelected,
   }) {
     return queryChanged(query);
@@ -156,6 +163,7 @@ class _$QueryChangedImpl implements _QueryChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? queryChanged,
+    TResult? Function(String query)? searchRequested,
     TResult? Function(SelectedLocation location)? locationSelected,
   }) {
     return queryChanged?.call(query);
@@ -165,6 +173,7 @@ class _$QueryChangedImpl implements _QueryChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? queryChanged,
+    TResult Function(String query)? searchRequested,
     TResult Function(SelectedLocation location)? locationSelected,
     required TResult orElse(),
   }) {
@@ -178,6 +187,7 @@ class _$QueryChangedImpl implements _QueryChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_QueryChanged value) queryChanged,
+    required TResult Function(_SearchRequested value) searchRequested,
     required TResult Function(_LocationSelected value) locationSelected,
   }) {
     return queryChanged(this);
@@ -187,6 +197,7 @@ class _$QueryChangedImpl implements _QueryChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_QueryChanged value)? queryChanged,
+    TResult? Function(_SearchRequested value)? searchRequested,
     TResult? Function(_LocationSelected value)? locationSelected,
   }) {
     return queryChanged?.call(this);
@@ -196,6 +207,7 @@ class _$QueryChangedImpl implements _QueryChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_QueryChanged value)? queryChanged,
+    TResult Function(_SearchRequested value)? searchRequested,
     TResult Function(_LocationSelected value)? locationSelected,
     required TResult orElse(),
   }) {
@@ -215,6 +227,157 @@ abstract class _QueryChanged implements LocationAutocompleteEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$QueryChangedImplCopyWith<_$QueryChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchRequestedImplCopyWith<$Res> {
+  factory _$$SearchRequestedImplCopyWith(
+    _$SearchRequestedImpl value,
+    $Res Function(_$SearchRequestedImpl) then,
+  ) = __$$SearchRequestedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$SearchRequestedImplCopyWithImpl<$Res>
+    extends _$LocationAutocompleteEventCopyWithImpl<$Res, _$SearchRequestedImpl>
+    implements _$$SearchRequestedImplCopyWith<$Res> {
+  __$$SearchRequestedImplCopyWithImpl(
+    _$SearchRequestedImpl _value,
+    $Res Function(_$SearchRequestedImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of LocationAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? query = null}) {
+    return _then(
+      _$SearchRequestedImpl(
+        null == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
+  }
+}
+
+/// @nodoc
+
+class _$SearchRequestedImpl implements _SearchRequested {
+  const _$SearchRequestedImpl(this.query);
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'LocationAutocompleteEvent.searchRequested(query: $query)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchRequestedImpl &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  /// Create a copy of LocationAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchRequestedImplCopyWith<_$SearchRequestedImpl> get copyWith =>
+      __$$SearchRequestedImplCopyWithImpl<_$SearchRequestedImpl>(
+        this,
+        _$identity,
+      );
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String query) queryChanged,
+    required TResult Function(String query) searchRequested,
+    required TResult Function(SelectedLocation location) locationSelected,
+  }) {
+    return searchRequested(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String query)? queryChanged,
+    TResult? Function(String query)? searchRequested,
+    TResult? Function(SelectedLocation location)? locationSelected,
+  }) {
+    return searchRequested?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String query)? queryChanged,
+    TResult Function(String query)? searchRequested,
+    TResult Function(SelectedLocation location)? locationSelected,
+    required TResult orElse(),
+  }) {
+    if (searchRequested != null) {
+      return searchRequested(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_QueryChanged value) queryChanged,
+    required TResult Function(_SearchRequested value) searchRequested,
+    required TResult Function(_LocationSelected value) locationSelected,
+  }) {
+    return searchRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_QueryChanged value)? queryChanged,
+    TResult? Function(_SearchRequested value)? searchRequested,
+    TResult? Function(_LocationSelected value)? locationSelected,
+  }) {
+    return searchRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_QueryChanged value)? queryChanged,
+    TResult Function(_SearchRequested value)? searchRequested,
+    TResult Function(_LocationSelected value)? locationSelected,
+    required TResult orElse(),
+  }) {
+    if (searchRequested != null) {
+      return searchRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchRequested implements LocationAutocompleteEvent {
+  const factory _SearchRequested(final String query) = _$SearchRequestedImpl;
+
+  String get query;
+
+  /// Create a copy of LocationAutocompleteEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SearchRequestedImplCopyWith<_$SearchRequestedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -306,6 +469,7 @@ class _$LocationSelectedImpl implements _LocationSelected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) queryChanged,
+    required TResult Function(String query) searchRequested,
     required TResult Function(SelectedLocation location) locationSelected,
   }) {
     return locationSelected(location);
@@ -315,6 +479,7 @@ class _$LocationSelectedImpl implements _LocationSelected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? queryChanged,
+    TResult? Function(String query)? searchRequested,
     TResult? Function(SelectedLocation location)? locationSelected,
   }) {
     return locationSelected?.call(location);
@@ -324,6 +489,7 @@ class _$LocationSelectedImpl implements _LocationSelected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? queryChanged,
+    TResult Function(String query)? searchRequested,
     TResult Function(SelectedLocation location)? locationSelected,
     required TResult orElse(),
   }) {
@@ -337,6 +503,7 @@ class _$LocationSelectedImpl implements _LocationSelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_QueryChanged value) queryChanged,
+    required TResult Function(_SearchRequested value) searchRequested,
     required TResult Function(_LocationSelected value) locationSelected,
   }) {
     return locationSelected(this);
@@ -346,6 +513,7 @@ class _$LocationSelectedImpl implements _LocationSelected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_QueryChanged value)? queryChanged,
+    TResult? Function(_SearchRequested value)? searchRequested,
     TResult? Function(_LocationSelected value)? locationSelected,
   }) {
     return locationSelected?.call(this);
@@ -355,6 +523,7 @@ class _$LocationSelectedImpl implements _LocationSelected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_QueryChanged value)? queryChanged,
+    TResult Function(_SearchRequested value)? searchRequested,
     TResult Function(_LocationSelected value)? locationSelected,
     required TResult orElse(),
   }) {

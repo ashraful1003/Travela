@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:travela/features/property_search/domain/entities/guest_info.dart';
-import 'package:travela/features/property_search/domain/entities/location.dart';
 import 'package:travela/features/property_search/domain/entities/price_range.dart';
+import 'package:travela/features/property_search/domain/entities/selected_location.dart';
 
 part 'search_criteria.freezed.dart';
 
@@ -20,8 +20,11 @@ part 'search_criteria.freezed.dart';
 @freezed
 class SearchCriteria with _$SearchCriteria {
   const factory SearchCriteria({
-    /// Preferred location for the search. Nullable for open searches.
-    Location? location,
+    /// Location picked from autocomplete. Carries id/lat/lng plus the
+    /// ranking metadata (within/tier_1/tier_2) the search endpoint expects.
+    /// The search API requires either a location id or lat/lng, so this is
+    /// mandatory in practice even though it's nullable at the type level.
+    SelectedLocation? location,
 
     /// Optional check-in date.
     DateTime? checkIn,
@@ -39,10 +42,10 @@ class SearchCriteria with _$SearchCriteria {
     /// Free-text query (e.g., "beachfront", "city center").
     String? query,
 
-    /// Pagination: page index (0-based).
-    @Default(0) int page,
+    /// Pagination: 1-based page number, matching the API.
+    @Default(1) int page,
 
-    /// Pagination: items per page.
+    /// Pagination: items per page (API default 20, max 50).
     @Default(20) int pageSize,
   }) = _SearchCriteria;
 }

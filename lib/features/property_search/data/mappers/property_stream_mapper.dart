@@ -16,15 +16,13 @@ Either<Failure, SearchStreamEvent> mapStreamDtoToDomain(
       dto.map(
         metadata: (PropertyStreamEventMetaDto m) => SearchStreamEvent.metadata(
           SearchMetadata(
-            searchId: m.meta.searchId,
-            estimatedTotal: m.meta.estimatedTotal,
-            timestamp: m.meta.timestamp != null
-                ? DateTime.tryParse(m.meta.timestamp!)
-                : null,
+            totalCount: m.meta.totalCount,
+            page: m.meta.pagination?.page,
+            totalPages: m.meta.pagination?.totalPage,
           ),
         ),
         item: (PropertyStreamEventItemDto it) =>
-            SearchStreamEvent.property(it.item.property.toDomain()),
+            SearchStreamEvent.property(it.item.toDomain()),
         done: (PropertyStreamEventDoneDto d) =>
             const SearchStreamEvent.completed(),
         error: (PropertyStreamEventErrorDto e) => SearchStreamEvent.failure(

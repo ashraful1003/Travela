@@ -12,3 +12,4 @@ extension PopularLocationDtoMapper on PopularLocationDto {
         tier2: tier2,
       );
 }
+

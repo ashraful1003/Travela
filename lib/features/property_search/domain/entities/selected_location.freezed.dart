@@ -17,13 +17,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SelectedLocation {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   double get lat => throw _privateConstructorUsedError;
   double get lng => throw _privateConstructorUsedError;
-  String? get within => throw _privateConstructorUsedError;
-  String? get tier1 => throw _privateConstructorUsedError;
-  String? get tier2 => throw _privateConstructorUsedError;
+  double? get within => throw _privateConstructorUsedError;
+  double? get tier1 => throw _privateConstructorUsedError;
+  double? get tier2 => throw _privateConstructorUsedError;
 
   /// Create a copy of SelectedLocation
   /// with the given fields replaced by the non-null parameter values.
@@ -40,13 +40,13 @@ abstract class $SelectedLocationCopyWith<$Res> {
   ) = _$SelectedLocationCopyWithImpl<$Res, SelectedLocation>;
   @useResult
   $Res call({
-    String id,
+    int id,
     String name,
     double lat,
     double lng,
-    String? within,
-    String? tier1,
-    String? tier2,
+    double? within,
+    double? tier1,
+    double? tier2,
   });
 }
 
@@ -78,7 +78,7 @@ class _$SelectedLocationCopyWithImpl<$Res, $Val extends SelectedLocation>
             id: null == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                      as String,
+                      as int,
             name: null == name
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
@@ -94,15 +94,15 @@ class _$SelectedLocationCopyWithImpl<$Res, $Val extends SelectedLocation>
             within: freezed == within
                 ? _value.within
                 : within // ignore: cast_nullable_to_non_nullable
-                      as String?,
+                      as double?,
             tier1: freezed == tier1
                 ? _value.tier1
                 : tier1 // ignore: cast_nullable_to_non_nullable
-                      as String?,
+                      as double?,
             tier2: freezed == tier2
                 ? _value.tier2
                 : tier2 // ignore: cast_nullable_to_non_nullable
-                      as String?,
+                      as double?,
           )
           as $Val,
     );
@@ -119,13 +119,13 @@ abstract class _$$SelectedLocationImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
+    int id,
     String name,
     double lat,
     double lng,
-    String? within,
-    String? tier1,
-    String? tier2,
+    double? within,
+    double? tier1,
+    double? tier2,
   });
 }
 
@@ -156,7 +156,7 @@ class __$$SelectedLocationImplCopyWithImpl<$Res>
         id: null == id
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as int,
         name: null == name
             ? _value.name
             : name // ignore: cast_nullable_to_non_nullable
@@ -172,15 +172,15 @@ class __$$SelectedLocationImplCopyWithImpl<$Res>
         within: freezed == within
             ? _value.within
             : within // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                  as double?,
         tier1: freezed == tier1
             ? _value.tier1
             : tier1 // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                  as double?,
         tier2: freezed == tier2
             ? _value.tier2
             : tier2 // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                  as double?,
       ),
     );
   }
@@ -200,7 +200,7 @@ class _$SelectedLocationImpl extends _SelectedLocation {
   }) : super._();
 
   @override
-  final String id;
+  final int id;
   @override
   final String name;
   @override
@@ -208,11 +208,11 @@ class _$SelectedLocationImpl extends _SelectedLocation {
   @override
   final double lng;
   @override
-  final String? within;
+  final double? within;
   @override
-  final String? tier1;
+  final double? tier1;
   @override
-  final String? tier2;
+  final double? tier2;
 
   @override
   String toString() {
@@ -251,18 +251,18 @@ class _$SelectedLocationImpl extends _SelectedLocation {
 
 abstract class _SelectedLocation extends SelectedLocation {
   const factory _SelectedLocation({
-    required final String id,
+    required final int id,
     required final String name,
     required final double lat,
     required final double lng,
-    final String? within,
-    final String? tier1,
-    final String? tier2,
+    final double? within,
+    final double? tier1,
+    final double? tier2,
   }) = _$SelectedLocationImpl;
   const _SelectedLocation._() : super._();
 
   @override
-  String get id;
+  int get id;
   @override
   String get name;
   @override
@@ -270,11 +270,11 @@ abstract class _SelectedLocation extends SelectedLocation {
   @override
   double get lng;
   @override
-  String? get within;
+  double? get within;
   @override
-  String? get tier1;
+  double? get tier1;
   @override
-  String? get tier2;
+  double? get tier2;
 
   /// Create a copy of SelectedLocation
   /// with the given fields replaced by the non-null parameter values.

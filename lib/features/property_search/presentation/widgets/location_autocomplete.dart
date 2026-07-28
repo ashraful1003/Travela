@@ -75,7 +75,9 @@ class _LocationAutocompleteState extends State<LocationAutocomplete> {
                       final SelectedLocation s = state.suggestions[index];
                       return ListTile(
                         title: Text(s.name),
-                        subtitle: Text(s.within ?? ''),
+                        subtitle: s.within != null
+                            ? Text('within ${s.within!.toStringAsFixed(0)} km')
+                            : null,
                         onTap: () {
                           _controller.text = s.name;
                           _focusNode.unfocus();

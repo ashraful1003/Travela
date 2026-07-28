@@ -10,8 +10,8 @@ part 'search_stream_event.freezed.dart';
 /// property search.
 ///
 /// Events:
-/// - metadata: initial or incremental search metadata (e.g., search id,
-///   estimated totals).
+/// - metadata: the single `meta` event that opens a search stream (total
+///   result count and pagination info).
 /// - property: a single Property item streamed from the backend.
 /// - completed: marker that the backend finished sending items for this search.
 /// - failure: an event-level representation of a non-fatal failure.

@@ -20,10 +20,9 @@ mixin _$PropertySearchEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-      String location,
+      SelectedLocation location,
       double minPrice,
       double maxPrice,
-      String currency,
       int adults,
       int children,
       int infants,
@@ -37,10 +36,9 @@ mixin _$PropertySearchEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-      String location,
+      SelectedLocation location,
       double minPrice,
       double maxPrice,
-      String currency,
       int adults,
       int children,
       int infants,
@@ -54,10 +52,9 @@ mixin _$PropertySearchEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-      String location,
+      SelectedLocation location,
       double minPrice,
       double maxPrice,
-      String currency,
       int adults,
       int children,
       int infants,
@@ -117,10 +114,9 @@ abstract class _$$SearchSubmittedImplCopyWith<$Res> {
   ) = __$$SearchSubmittedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({
-    String location,
+    SelectedLocation location,
     double minPrice,
     double maxPrice,
-    String currency,
     int adults,
     int children,
     int infants,
@@ -128,6 +124,8 @@ abstract class _$$SearchSubmittedImplCopyWith<$Res> {
     DateTime? checkOut,
     String? query,
   });
+
+  $SelectedLocationCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -147,7 +145,6 @@ class __$$SearchSubmittedImplCopyWithImpl<$Res>
     Object? location = null,
     Object? minPrice = null,
     Object? maxPrice = null,
-    Object? currency = null,
     Object? adults = null,
     Object? children = null,
     Object? infants = null,
@@ -160,7 +157,7 @@ class __$$SearchSubmittedImplCopyWithImpl<$Res>
         location: null == location
             ? _value.location
             : location // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as SelectedLocation,
         minPrice: null == minPrice
             ? _value.minPrice
             : minPrice // ignore: cast_nullable_to_non_nullable
@@ -169,10 +166,6 @@ class __$$SearchSubmittedImplCopyWithImpl<$Res>
             ? _value.maxPrice
             : maxPrice // ignore: cast_nullable_to_non_nullable
                   as double,
-        currency: null == currency
-            ? _value.currency
-            : currency // ignore: cast_nullable_to_non_nullable
-                  as String,
         adults: null == adults
             ? _value.adults
             : adults // ignore: cast_nullable_to_non_nullable
@@ -200,6 +193,16 @@ class __$$SearchSubmittedImplCopyWithImpl<$Res>
       ),
     );
   }
+
+  /// Create a copy of PropertySearchEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SelectedLocationCopyWith<$Res> get location {
+    return $SelectedLocationCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -209,7 +212,6 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
     required this.location,
     required this.minPrice,
     required this.maxPrice,
-    required this.currency,
     required this.adults,
     required this.children,
     required this.infants,
@@ -219,13 +221,11 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
   });
 
   @override
-  final String location;
+  final SelectedLocation location;
   @override
   final double minPrice;
   @override
   final double maxPrice;
-  @override
-  final String currency;
   @override
   final int adults;
   @override
@@ -241,7 +241,7 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
 
   @override
   String toString() {
-    return 'PropertySearchEvent.searchSubmitted(location: $location, minPrice: $minPrice, maxPrice: $maxPrice, currency: $currency, adults: $adults, children: $children, infants: $infants, checkIn: $checkIn, checkOut: $checkOut, query: $query)';
+    return 'PropertySearchEvent.searchSubmitted(location: $location, minPrice: $minPrice, maxPrice: $maxPrice, adults: $adults, children: $children, infants: $infants, checkIn: $checkIn, checkOut: $checkOut, query: $query)';
   }
 
   @override
@@ -255,8 +255,6 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
                 other.minPrice == minPrice) &&
             (identical(other.maxPrice, maxPrice) ||
                 other.maxPrice == maxPrice) &&
-            (identical(other.currency, currency) ||
-                other.currency == currency) &&
             (identical(other.adults, adults) || other.adults == adults) &&
             (identical(other.children, children) ||
                 other.children == children) &&
@@ -273,7 +271,6 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
     location,
     minPrice,
     maxPrice,
-    currency,
     adults,
     children,
     infants,
@@ -297,10 +294,9 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-      String location,
+      SelectedLocation location,
       double minPrice,
       double maxPrice,
-      String currency,
       int adults,
       int children,
       int infants,
@@ -315,7 +311,6 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
       location,
       minPrice,
       maxPrice,
-      currency,
       adults,
       children,
       infants,
@@ -329,10 +324,9 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-      String location,
+      SelectedLocation location,
       double minPrice,
       double maxPrice,
-      String currency,
       int adults,
       int children,
       int infants,
@@ -347,7 +341,6 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
       location,
       minPrice,
       maxPrice,
-      currency,
       adults,
       children,
       infants,
@@ -361,10 +354,9 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-      String location,
+      SelectedLocation location,
       double minPrice,
       double maxPrice,
-      String currency,
       int adults,
       int children,
       int infants,
@@ -381,7 +373,6 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
         location,
         minPrice,
         maxPrice,
-        currency,
         adults,
         children,
         infants,
@@ -427,10 +418,9 @@ class _$SearchSubmittedImpl implements _SearchSubmitted {
 
 abstract class _SearchSubmitted implements PropertySearchEvent {
   const factory _SearchSubmitted({
-    required final String location,
+    required final SelectedLocation location,
     required final double minPrice,
     required final double maxPrice,
-    required final String currency,
     required final int adults,
     required final int children,
     required final int infants,
@@ -439,10 +429,9 @@ abstract class _SearchSubmitted implements PropertySearchEvent {
     final String? query,
   }) = _$SearchSubmittedImpl;
 
-  String get location;
+  SelectedLocation get location;
   double get minPrice;
   double get maxPrice;
-  String get currency;
   int get adults;
   int get children;
   int get infants;
@@ -501,10 +490,9 @@ class _$RetryRequestedImpl implements _RetryRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-      String location,
+      SelectedLocation location,
       double minPrice,
       double maxPrice,
-      String currency,
       int adults,
       int children,
       int infants,
@@ -522,10 +510,9 @@ class _$RetryRequestedImpl implements _RetryRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-      String location,
+      SelectedLocation location,
       double minPrice,
       double maxPrice,
-      String currency,
       int adults,
       int children,
       int infants,
@@ -543,10 +530,9 @@ class _$RetryRequestedImpl implements _RetryRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-      String location,
+      SelectedLocation location,
       double minPrice,
       double maxPrice,
-      String currency,
       int adults,
       int children,
       int infants,

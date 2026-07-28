@@ -17,14 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchMetadata {
-  /// Stable identifier for the search session (if provided by backend).
-  String get searchId => throw _privateConstructorUsedError;
+  /// Total number of results the search matched (shown as "N stays").
+  int get totalCount => throw _privateConstructorUsedError;
 
-  /// Optional estimated total number of results (may be null if unknown).
-  int? get estimatedTotal => throw _privateConstructorUsedError;
+  /// Current page number, when the backend reports pagination.
+  int? get page => throw _privateConstructorUsedError;
 
-  /// Time when the metadata/event was issued by the backend.
-  DateTime? get timestamp => throw _privateConstructorUsedError;
+  /// Total number of pages available, when the backend reports pagination.
+  int? get totalPages => throw _privateConstructorUsedError;
 
   /// Create a copy of SearchMetadata
   /// with the given fields replaced by the non-null parameter values.
@@ -40,7 +40,7 @@ abstract class $SearchMetadataCopyWith<$Res> {
     $Res Function(SearchMetadata) then,
   ) = _$SearchMetadataCopyWithImpl<$Res, SearchMetadata>;
   @useResult
-  $Res call({String searchId, int? estimatedTotal, DateTime? timestamp});
+  $Res call({int totalCount, int? page, int? totalPages});
 }
 
 /// @nodoc
@@ -58,24 +58,24 @@ class _$SearchMetadataCopyWithImpl<$Res, $Val extends SearchMetadata>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchId = null,
-    Object? estimatedTotal = freezed,
-    Object? timestamp = freezed,
+    Object? totalCount = null,
+    Object? page = freezed,
+    Object? totalPages = freezed,
   }) {
     return _then(
       _value.copyWith(
-            searchId: null == searchId
-                ? _value.searchId
-                : searchId // ignore: cast_nullable_to_non_nullable
-                      as String,
-            estimatedTotal: freezed == estimatedTotal
-                ? _value.estimatedTotal
-                : estimatedTotal // ignore: cast_nullable_to_non_nullable
+            totalCount: null == totalCount
+                ? _value.totalCount
+                : totalCount // ignore: cast_nullable_to_non_nullable
+                      as int,
+            page: freezed == page
+                ? _value.page
+                : page // ignore: cast_nullable_to_non_nullable
                       as int?,
-            timestamp: freezed == timestamp
-                ? _value.timestamp
-                : timestamp // ignore: cast_nullable_to_non_nullable
-                      as DateTime?,
+            totalPages: freezed == totalPages
+                ? _value.totalPages
+                : totalPages // ignore: cast_nullable_to_non_nullable
+                      as int?,
           )
           as $Val,
     );
@@ -91,7 +91,7 @@ abstract class _$$SearchMetadataImplCopyWith<$Res>
   ) = __$$SearchMetadataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String searchId, int? estimatedTotal, DateTime? timestamp});
+  $Res call({int totalCount, int? page, int? totalPages});
 }
 
 /// @nodoc
@@ -108,24 +108,24 @@ class __$$SearchMetadataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchId = null,
-    Object? estimatedTotal = freezed,
-    Object? timestamp = freezed,
+    Object? totalCount = null,
+    Object? page = freezed,
+    Object? totalPages = freezed,
   }) {
     return _then(
       _$SearchMetadataImpl(
-        searchId: null == searchId
-            ? _value.searchId
-            : searchId // ignore: cast_nullable_to_non_nullable
-                  as String,
-        estimatedTotal: freezed == estimatedTotal
-            ? _value.estimatedTotal
-            : estimatedTotal // ignore: cast_nullable_to_non_nullable
+        totalCount: null == totalCount
+            ? _value.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        page: freezed == page
+            ? _value.page
+            : page // ignore: cast_nullable_to_non_nullable
                   as int?,
-        timestamp: freezed == timestamp
-            ? _value.timestamp
-            : timestamp // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
+        totalPages: freezed == totalPages
+            ? _value.totalPages
+            : totalPages // ignore: cast_nullable_to_non_nullable
+                  as int?,
       ),
     );
   }
@@ -135,26 +135,26 @@ class __$$SearchMetadataImplCopyWithImpl<$Res>
 
 class _$SearchMetadataImpl implements _SearchMetadata {
   const _$SearchMetadataImpl({
-    required this.searchId,
-    this.estimatedTotal,
-    this.timestamp,
+    required this.totalCount,
+    this.page,
+    this.totalPages,
   });
 
-  /// Stable identifier for the search session (if provided by backend).
+  /// Total number of results the search matched (shown as "N stays").
   @override
-  final String searchId;
+  final int totalCount;
 
-  /// Optional estimated total number of results (may be null if unknown).
+  /// Current page number, when the backend reports pagination.
   @override
-  final int? estimatedTotal;
+  final int? page;
 
-  /// Time when the metadata/event was issued by the backend.
+  /// Total number of pages available, when the backend reports pagination.
   @override
-  final DateTime? timestamp;
+  final int? totalPages;
 
   @override
   String toString() {
-    return 'SearchMetadata(searchId: $searchId, estimatedTotal: $estimatedTotal, timestamp: $timestamp)';
+    return 'SearchMetadata(totalCount: $totalCount, page: $page, totalPages: $totalPages)';
   }
 
   @override
@@ -162,17 +162,15 @@ class _$SearchMetadataImpl implements _SearchMetadata {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchMetadataImpl &&
-            (identical(other.searchId, searchId) ||
-                other.searchId == searchId) &&
-            (identical(other.estimatedTotal, estimatedTotal) ||
-                other.estimatedTotal == estimatedTotal) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp));
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, searchId, estimatedTotal, timestamp);
+  int get hashCode => Object.hash(runtimeType, totalCount, page, totalPages);
 
   /// Create a copy of SearchMetadata
   /// with the given fields replaced by the non-null parameter values.
@@ -188,22 +186,22 @@ class _$SearchMetadataImpl implements _SearchMetadata {
 
 abstract class _SearchMetadata implements SearchMetadata {
   const factory _SearchMetadata({
-    required final String searchId,
-    final int? estimatedTotal,
-    final DateTime? timestamp,
+    required final int totalCount,
+    final int? page,
+    final int? totalPages,
   }) = _$SearchMetadataImpl;
 
-  /// Stable identifier for the search session (if provided by backend).
+  /// Total number of results the search matched (shown as "N stays").
   @override
-  String get searchId;
+  int get totalCount;
 
-  /// Optional estimated total number of results (may be null if unknown).
+  /// Current page number, when the backend reports pagination.
   @override
-  int? get estimatedTotal;
+  int? get page;
 
-  /// Time when the metadata/event was issued by the backend.
+  /// Total number of pages available, when the backend reports pagination.
   @override
-  DateTime? get timestamp;
+  int? get totalPages;
 
   /// Create a copy of SearchMetadata
   /// with the given fields replaced by the non-null parameter values.

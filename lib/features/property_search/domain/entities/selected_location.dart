@@ -11,13 +11,13 @@ part 'selected_location.freezed.dart';
 @freezed
 class SelectedLocation with _$SelectedLocation {
   const factory SelectedLocation({
-    required String id,
+    required int id,
     required String name,
     required double lat,
     required double lng,
-    String? within,
-    String? tier1,
-    String? tier2,
+    double? within,
+    double? tier1,
+    double? tier2,
   }) = _SelectedLocation;
 
   const SelectedLocation._();

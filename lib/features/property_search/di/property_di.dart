@@ -5,8 +5,6 @@ import 'package:travela/core/network/stream_client.dart';
 import 'package:travela/core/network/stream_client_impl.dart';
 import 'package:travela/features/property_search/data/datasources/location_remote_data_source.dart';
 import 'package:travela/features/property_search/data/datasources/location_remote_data_source_impl.dart';
-import 'package:travela/features/property_search/data/datasources/property_remote_data_source.dart';
-import 'package:travela/features/property_search/data/datasources/property_remote_data_source_impl.dart';
 import 'package:travela/features/property_search/data/datasources/property_stream_remote_data_source.dart';
 import 'package:travela/features/property_search/data/datasources/property_stream_remote_data_source_impl.dart';
 import 'package:travela/features/property_search/data/repositories/location_repository_impl.dart';
@@ -14,7 +12,6 @@ import 'package:travela/features/property_search/data/repositories/property_repo
 import 'package:travela/features/property_search/domain/repositories/location_repository.dart';
 import 'package:travela/features/property_search/domain/repositories/property_repository.dart';
 import 'package:travela/features/property_search/domain/usecases/search_locations.dart';
-import 'package:travela/features/property_search/domain/usecases/search_properties.dart';
 import 'package:travela/features/property_search/domain/usecases/stream_search_properties.dart';
 import 'package:travela/features/property_search/presentation/bloc/location_autocomplete_bloc.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_bloc.dart';
@@ -24,12 +21,6 @@ import 'package:travela/features/property_search/presentation/bloc/property_sear
 /// Call this from app bootstrap when the feature is required. It registers
 /// the remote data source and the repository implementation.
 Future<void> initPropertySearchModule(GetIt sl) async {
-  if (!sl.isRegistered<PropertyRemoteDataSource>()) {
-    sl.registerLazySingleton<PropertyRemoteDataSource>(
-      () => PropertyRemoteDataSourceImpl(sl.get<ApiClient>()),
-    );
-  }
-
   // Stream client for SSE
   if (!sl.isRegistered<StreamClient>()) {
     sl.registerLazySingleton<StreamClient>(
@@ -45,10 +36,7 @@ Future<void> initPropertySearchModule(GetIt sl) async {
 
   if (!sl.isRegistered<PropertyRepository>()) {
     sl.registerLazySingleton<PropertyRepository>(
-      () => PropertyRepositoryImpl(
-        sl.get<PropertyRemoteDataSource>(),
-        sl.get<PropertyStreamRemoteDataSource>(),
-      ),
+      () => PropertyRepositoryImpl(sl.get<PropertyStreamRemoteDataSource>()),
     );
   }
 
@@ -66,12 +54,6 @@ Future<void> initPropertySearchModule(GetIt sl) async {
   }
 
   // Domain use cases
-  if (!sl.isRegistered<SearchProperties>()) {
-    sl.registerLazySingleton<SearchProperties>(
-      () => SearchProperties(sl.get<PropertyRepository>()),
-    );
-  }
-
   if (!sl.isRegistered<StreamSearchProperties>()) {
     sl.registerLazySingleton<StreamSearchProperties>(
       () => StreamSearchProperties(sl.get<PropertyRepository>()),
@@ -81,13 +63,6 @@ Future<void> initPropertySearchModule(GetIt sl) async {
   if (!sl.isRegistered<SearchLocations>()) {
     sl.registerLazySingleton<SearchLocations>(
       () => SearchLocations(sl.get<LocationRepository>()),
-    );
-  }
-
-  // Domain use cases
-  if (!sl.isRegistered<SearchProperties>()) {
-    sl.registerLazySingleton<SearchProperties>(
-      () => SearchProperties(sl.get<PropertyRepository>()),
     );
   }
 

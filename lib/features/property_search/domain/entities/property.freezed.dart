@@ -23,34 +23,34 @@ mixin _$Property {
   /// Short human-readable title.
   String get title => throw _privateConstructorUsedError;
 
-  /// Location where the property is situated.
-  Location get location => throw _privateConstructorUsedError;
+  /// Free-text address/location label as returned by the API.
+  String get address => throw _privateConstructorUsedError;
 
-  /// Representative pricing for the property.
-  PriceRange get priceRange => throw _privateConstructorUsedError;
+  /// Listed price.
+  num get price => throw _privateConstructorUsedError;
 
-  /// Maximum number of guests supported.
-  int get maxGuests => throw _privateConstructorUsedError;
+  /// Discounted price, when the property has an active offer.
+  num? get offerPrice => throw _privateConstructorUsedError;
 
-  /// Longer description. Nullable if not provided.
-  String? get description => throw _privateConstructorUsedError;
+  /// Average review score (0-5), null when the property has no reviews yet.
+  double? get reviewsAvg => throw _privateConstructorUsedError;
 
-  /// Number of bedrooms (optional as some listings may be studio-like).
-  int? get bedrooms => throw _privateConstructorUsedError;
+  /// Number of reviews backing [reviewsAvg].
+  int get reviewsCount => throw _privateConstructorUsedError;
 
-  /// Number of bathrooms.
-  int? get bathrooms => throw _privateConstructorUsedError;
+  /// Image URLs, in the order returned by the API. May be empty.
+  List<String> get imageUrls => throw _privateConstructorUsedError;
 
-  /// List of photo URLs. This is a business-level concept; transport
-  /// representation (DTO) will own URL formatting and validation.
-  List<String> get photoUrls => throw _privateConstructorUsedError;
+  /// Whether this result is a hotel rather than a standalone property.
+  bool get isHotel => throw _privateConstructorUsedError;
 
-  /// List of amenity identifiers or human strings describing available
-  /// amenities (e.g., "WiFi", "Air conditioning"). Kept generic.
-  List<String> get amenities => throw _privateConstructorUsedError;
-
-  /// Whether the property supports instant booking.
-  bool get instantBook => throw _privateConstructorUsedError;
+  /// Human-readable label for a promotional badge (e.g. "Sponsored"),
+  /// when the API attaches one.
+  String? get featuredBadgeLabel => throw _privateConstructorUsedError;
+  int? get bedroom => throw _privateConstructorUsedError;
+  int? get beds => throw _privateConstructorUsedError;
+  int? get bathroom => throw _privateConstructorUsedError;
+  int? get maxGuest => throw _privateConstructorUsedError;
 
   /// Create a copy of Property
   /// with the given fields replaced by the non-null parameter values.
@@ -67,19 +67,19 @@ abstract class $PropertyCopyWith<$Res> {
   $Res call({
     String id,
     String title,
-    Location location,
-    PriceRange priceRange,
-    int maxGuests,
-    String? description,
-    int? bedrooms,
-    int? bathrooms,
-    List<String> photoUrls,
-    List<String> amenities,
-    bool instantBook,
+    String address,
+    num price,
+    num? offerPrice,
+    double? reviewsAvg,
+    int reviewsCount,
+    List<String> imageUrls,
+    bool isHotel,
+    String? featuredBadgeLabel,
+    int? bedroom,
+    int? beds,
+    int? bathroom,
+    int? maxGuest,
   });
-
-  $LocationCopyWith<$Res> get location;
-  $PriceRangeCopyWith<$Res> get priceRange;
 }
 
 /// @nodoc
@@ -99,15 +99,18 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? location = null,
-    Object? priceRange = null,
-    Object? maxGuests = null,
-    Object? description = freezed,
-    Object? bedrooms = freezed,
-    Object? bathrooms = freezed,
-    Object? photoUrls = null,
-    Object? amenities = null,
-    Object? instantBook = null,
+    Object? address = null,
+    Object? price = null,
+    Object? offerPrice = freezed,
+    Object? reviewsAvg = freezed,
+    Object? reviewsCount = null,
+    Object? imageUrls = null,
+    Object? isHotel = null,
+    Object? featuredBadgeLabel = freezed,
+    Object? bedroom = freezed,
+    Object? beds = freezed,
+    Object? bathroom = freezed,
+    Object? maxGuest = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -119,65 +122,57 @@ class _$PropertyCopyWithImpl<$Res, $Val extends Property>
                 ? _value.title
                 : title // ignore: cast_nullable_to_non_nullable
                       as String,
-            location: null == location
-                ? _value.location
-                : location // ignore: cast_nullable_to_non_nullable
-                      as Location,
-            priceRange: null == priceRange
-                ? _value.priceRange
-                : priceRange // ignore: cast_nullable_to_non_nullable
-                      as PriceRange,
-            maxGuests: null == maxGuests
-                ? _value.maxGuests
-                : maxGuests // ignore: cast_nullable_to_non_nullable
+            address: null == address
+                ? _value.address
+                : address // ignore: cast_nullable_to_non_nullable
+                      as String,
+            price: null == price
+                ? _value.price
+                : price // ignore: cast_nullable_to_non_nullable
+                      as num,
+            offerPrice: freezed == offerPrice
+                ? _value.offerPrice
+                : offerPrice // ignore: cast_nullable_to_non_nullable
+                      as num?,
+            reviewsAvg: freezed == reviewsAvg
+                ? _value.reviewsAvg
+                : reviewsAvg // ignore: cast_nullable_to_non_nullable
+                      as double?,
+            reviewsCount: null == reviewsCount
+                ? _value.reviewsCount
+                : reviewsCount // ignore: cast_nullable_to_non_nullable
                       as int,
-            description: freezed == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            bedrooms: freezed == bedrooms
-                ? _value.bedrooms
-                : bedrooms // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            bathrooms: freezed == bathrooms
-                ? _value.bathrooms
-                : bathrooms // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            photoUrls: null == photoUrls
-                ? _value.photoUrls
-                : photoUrls // ignore: cast_nullable_to_non_nullable
+            imageUrls: null == imageUrls
+                ? _value.imageUrls
+                : imageUrls // ignore: cast_nullable_to_non_nullable
                       as List<String>,
-            amenities: null == amenities
-                ? _value.amenities
-                : amenities // ignore: cast_nullable_to_non_nullable
-                      as List<String>,
-            instantBook: null == instantBook
-                ? _value.instantBook
-                : instantBook // ignore: cast_nullable_to_non_nullable
+            isHotel: null == isHotel
+                ? _value.isHotel
+                : isHotel // ignore: cast_nullable_to_non_nullable
                       as bool,
+            featuredBadgeLabel: freezed == featuredBadgeLabel
+                ? _value.featuredBadgeLabel
+                : featuredBadgeLabel // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            bedroom: freezed == bedroom
+                ? _value.bedroom
+                : bedroom // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            beds: freezed == beds
+                ? _value.beds
+                : beds // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            bathroom: freezed == bathroom
+                ? _value.bathroom
+                : bathroom // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            maxGuest: freezed == maxGuest
+                ? _value.maxGuest
+                : maxGuest // ignore: cast_nullable_to_non_nullable
+                      as int?,
           )
           as $Val,
     );
-  }
-
-  /// Create a copy of Property
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $LocationCopyWith<$Res> get location {
-    return $LocationCopyWith<$Res>(_value.location, (value) {
-      return _then(_value.copyWith(location: value) as $Val);
-    });
-  }
-
-  /// Create a copy of Property
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PriceRangeCopyWith<$Res> get priceRange {
-    return $PriceRangeCopyWith<$Res>(_value.priceRange, (value) {
-      return _then(_value.copyWith(priceRange: value) as $Val);
-    });
   }
 }
 
@@ -193,21 +188,19 @@ abstract class _$$PropertyImplCopyWith<$Res>
   $Res call({
     String id,
     String title,
-    Location location,
-    PriceRange priceRange,
-    int maxGuests,
-    String? description,
-    int? bedrooms,
-    int? bathrooms,
-    List<String> photoUrls,
-    List<String> amenities,
-    bool instantBook,
+    String address,
+    num price,
+    num? offerPrice,
+    double? reviewsAvg,
+    int reviewsCount,
+    List<String> imageUrls,
+    bool isHotel,
+    String? featuredBadgeLabel,
+    int? bedroom,
+    int? beds,
+    int? bathroom,
+    int? maxGuest,
   });
-
-  @override
-  $LocationCopyWith<$Res> get location;
-  @override
-  $PriceRangeCopyWith<$Res> get priceRange;
 }
 
 /// @nodoc
@@ -226,15 +219,18 @@ class __$$PropertyImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? location = null,
-    Object? priceRange = null,
-    Object? maxGuests = null,
-    Object? description = freezed,
-    Object? bedrooms = freezed,
-    Object? bathrooms = freezed,
-    Object? photoUrls = null,
-    Object? amenities = null,
-    Object? instantBook = null,
+    Object? address = null,
+    Object? price = null,
+    Object? offerPrice = freezed,
+    Object? reviewsAvg = freezed,
+    Object? reviewsCount = null,
+    Object? imageUrls = null,
+    Object? isHotel = null,
+    Object? featuredBadgeLabel = freezed,
+    Object? bedroom = freezed,
+    Object? beds = freezed,
+    Object? bathroom = freezed,
+    Object? maxGuest = freezed,
   }) {
     return _then(
       _$PropertyImpl(
@@ -246,42 +242,54 @@ class __$$PropertyImplCopyWithImpl<$Res>
             ? _value.title
             : title // ignore: cast_nullable_to_non_nullable
                   as String,
-        location: null == location
-            ? _value.location
-            : location // ignore: cast_nullable_to_non_nullable
-                  as Location,
-        priceRange: null == priceRange
-            ? _value.priceRange
-            : priceRange // ignore: cast_nullable_to_non_nullable
-                  as PriceRange,
-        maxGuests: null == maxGuests
-            ? _value.maxGuests
-            : maxGuests // ignore: cast_nullable_to_non_nullable
+        address: null == address
+            ? _value.address
+            : address // ignore: cast_nullable_to_non_nullable
+                  as String,
+        price: null == price
+            ? _value.price
+            : price // ignore: cast_nullable_to_non_nullable
+                  as num,
+        offerPrice: freezed == offerPrice
+            ? _value.offerPrice
+            : offerPrice // ignore: cast_nullable_to_non_nullable
+                  as num?,
+        reviewsAvg: freezed == reviewsAvg
+            ? _value.reviewsAvg
+            : reviewsAvg // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        reviewsCount: null == reviewsCount
+            ? _value.reviewsCount
+            : reviewsCount // ignore: cast_nullable_to_non_nullable
                   as int,
-        description: freezed == description
-            ? _value.description
-            : description // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        bedrooms: freezed == bedrooms
-            ? _value.bedrooms
-            : bedrooms // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        bathrooms: freezed == bathrooms
-            ? _value.bathrooms
-            : bathrooms // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        photoUrls: null == photoUrls
-            ? _value._photoUrls
-            : photoUrls // ignore: cast_nullable_to_non_nullable
+        imageUrls: null == imageUrls
+            ? _value._imageUrls
+            : imageUrls // ignore: cast_nullable_to_non_nullable
                   as List<String>,
-        amenities: null == amenities
-            ? _value._amenities
-            : amenities // ignore: cast_nullable_to_non_nullable
-                  as List<String>,
-        instantBook: null == instantBook
-            ? _value.instantBook
-            : instantBook // ignore: cast_nullable_to_non_nullable
+        isHotel: null == isHotel
+            ? _value.isHotel
+            : isHotel // ignore: cast_nullable_to_non_nullable
                   as bool,
+        featuredBadgeLabel: freezed == featuredBadgeLabel
+            ? _value.featuredBadgeLabel
+            : featuredBadgeLabel // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        bedroom: freezed == bedroom
+            ? _value.bedroom
+            : bedroom // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        beds: freezed == beds
+            ? _value.beds
+            : beds // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        bathroom: freezed == bathroom
+            ? _value.bathroom
+            : bathroom // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        maxGuest: freezed == maxGuest
+            ? _value.maxGuest
+            : maxGuest // ignore: cast_nullable_to_non_nullable
+                  as int?,
       ),
     );
   }
@@ -293,17 +301,19 @@ class _$PropertyImpl implements _Property {
   const _$PropertyImpl({
     required this.id,
     required this.title,
-    required this.location,
-    required this.priceRange,
-    required this.maxGuests,
-    this.description,
-    this.bedrooms,
-    this.bathrooms,
-    final List<String> photoUrls = const <String>[],
-    final List<String> amenities = const <String>[],
-    this.instantBook = false,
-  }) : _photoUrls = photoUrls,
-       _amenities = amenities;
+    required this.address,
+    required this.price,
+    this.offerPrice,
+    this.reviewsAvg,
+    this.reviewsCount = 0,
+    final List<String> imageUrls = const <String>[],
+    this.isHotel = false,
+    this.featuredBadgeLabel,
+    this.bedroom,
+    this.beds,
+    this.bathroom,
+    this.maxGuest,
+  }) : _imageUrls = imageUrls;
 
   /// Unique business identifier for the property.
   @override
@@ -313,66 +323,60 @@ class _$PropertyImpl implements _Property {
   @override
   final String title;
 
-  /// Location where the property is situated.
+  /// Free-text address/location label as returned by the API.
   @override
-  final Location location;
+  final String address;
 
-  /// Representative pricing for the property.
+  /// Listed price.
   @override
-  final PriceRange priceRange;
+  final num price;
 
-  /// Maximum number of guests supported.
+  /// Discounted price, when the property has an active offer.
   @override
-  final int maxGuests;
+  final num? offerPrice;
 
-  /// Longer description. Nullable if not provided.
+  /// Average review score (0-5), null when the property has no reviews yet.
   @override
-  final String? description;
+  final double? reviewsAvg;
 
-  /// Number of bedrooms (optional as some listings may be studio-like).
-  @override
-  final int? bedrooms;
-
-  /// Number of bathrooms.
-  @override
-  final int? bathrooms;
-
-  /// List of photo URLs. This is a business-level concept; transport
-  /// representation (DTO) will own URL formatting and validation.
-  final List<String> _photoUrls;
-
-  /// List of photo URLs. This is a business-level concept; transport
-  /// representation (DTO) will own URL formatting and validation.
+  /// Number of reviews backing [reviewsAvg].
   @override
   @JsonKey()
-  List<String> get photoUrls {
-    if (_photoUrls is EqualUnmodifiableListView) return _photoUrls;
+  final int reviewsCount;
+
+  /// Image URLs, in the order returned by the API. May be empty.
+  final List<String> _imageUrls;
+
+  /// Image URLs, in the order returned by the API. May be empty.
+  @override
+  @JsonKey()
+  List<String> get imageUrls {
+    if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_photoUrls);
+    return EqualUnmodifiableListView(_imageUrls);
   }
 
-  /// List of amenity identifiers or human strings describing available
-  /// amenities (e.g., "WiFi", "Air conditioning"). Kept generic.
-  final List<String> _amenities;
-
-  /// List of amenity identifiers or human strings describing available
-  /// amenities (e.g., "WiFi", "Air conditioning"). Kept generic.
+  /// Whether this result is a hotel rather than a standalone property.
   @override
   @JsonKey()
-  List<String> get amenities {
-    if (_amenities is EqualUnmodifiableListView) return _amenities;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_amenities);
-  }
+  final bool isHotel;
 
-  /// Whether the property supports instant booking.
+  /// Human-readable label for a promotional badge (e.g. "Sponsored"),
+  /// when the API attaches one.
   @override
-  @JsonKey()
-  final bool instantBook;
+  final String? featuredBadgeLabel;
+  @override
+  final int? bedroom;
+  @override
+  final int? beds;
+  @override
+  final int? bathroom;
+  @override
+  final int? maxGuest;
 
   @override
   String toString() {
-    return 'Property(id: $id, title: $title, location: $location, priceRange: $priceRange, maxGuests: $maxGuests, description: $description, bedrooms: $bedrooms, bathrooms: $bathrooms, photoUrls: $photoUrls, amenities: $amenities, instantBook: $instantBook)';
+    return 'Property(id: $id, title: $title, address: $address, price: $price, offerPrice: $offerPrice, reviewsAvg: $reviewsAvg, reviewsCount: $reviewsCount, imageUrls: $imageUrls, isHotel: $isHotel, featuredBadgeLabel: $featuredBadgeLabel, bedroom: $bedroom, beds: $beds, bathroom: $bathroom, maxGuest: $maxGuest)';
   }
 
   @override
@@ -382,28 +386,27 @@ class _$PropertyImpl implements _Property {
             other is _$PropertyImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.location, location) ||
-                other.location == location) &&
-            (identical(other.priceRange, priceRange) ||
-                other.priceRange == priceRange) &&
-            (identical(other.maxGuests, maxGuests) ||
-                other.maxGuests == maxGuests) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.bedrooms, bedrooms) ||
-                other.bedrooms == bedrooms) &&
-            (identical(other.bathrooms, bathrooms) ||
-                other.bathrooms == bathrooms) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.offerPrice, offerPrice) ||
+                other.offerPrice == offerPrice) &&
+            (identical(other.reviewsAvg, reviewsAvg) ||
+                other.reviewsAvg == reviewsAvg) &&
+            (identical(other.reviewsCount, reviewsCount) ||
+                other.reviewsCount == reviewsCount) &&
             const DeepCollectionEquality().equals(
-              other._photoUrls,
-              _photoUrls,
+              other._imageUrls,
+              _imageUrls,
             ) &&
-            const DeepCollectionEquality().equals(
-              other._amenities,
-              _amenities,
-            ) &&
-            (identical(other.instantBook, instantBook) ||
-                other.instantBook == instantBook));
+            (identical(other.isHotel, isHotel) || other.isHotel == isHotel) &&
+            (identical(other.featuredBadgeLabel, featuredBadgeLabel) ||
+                other.featuredBadgeLabel == featuredBadgeLabel) &&
+            (identical(other.bedroom, bedroom) || other.bedroom == bedroom) &&
+            (identical(other.beds, beds) || other.beds == beds) &&
+            (identical(other.bathroom, bathroom) ||
+                other.bathroom == bathroom) &&
+            (identical(other.maxGuest, maxGuest) ||
+                other.maxGuest == maxGuest));
   }
 
   @override
@@ -411,15 +414,18 @@ class _$PropertyImpl implements _Property {
     runtimeType,
     id,
     title,
-    location,
-    priceRange,
-    maxGuests,
-    description,
-    bedrooms,
-    bathrooms,
-    const DeepCollectionEquality().hash(_photoUrls),
-    const DeepCollectionEquality().hash(_amenities),
-    instantBook,
+    address,
+    price,
+    offerPrice,
+    reviewsAvg,
+    reviewsCount,
+    const DeepCollectionEquality().hash(_imageUrls),
+    isHotel,
+    featuredBadgeLabel,
+    bedroom,
+    beds,
+    bathroom,
+    maxGuest,
   );
 
   /// Create a copy of Property
@@ -435,15 +441,18 @@ abstract class _Property implements Property {
   const factory _Property({
     required final String id,
     required final String title,
-    required final Location location,
-    required final PriceRange priceRange,
-    required final int maxGuests,
-    final String? description,
-    final int? bedrooms,
-    final int? bathrooms,
-    final List<String> photoUrls,
-    final List<String> amenities,
-    final bool instantBook,
+    required final String address,
+    required final num price,
+    final num? offerPrice,
+    final double? reviewsAvg,
+    final int reviewsCount,
+    final List<String> imageUrls,
+    final bool isHotel,
+    final String? featuredBadgeLabel,
+    final int? bedroom,
+    final int? beds,
+    final int? bathroom,
+    final int? maxGuest,
   }) = _$PropertyImpl;
 
   /// Unique business identifier for the property.
@@ -454,43 +463,46 @@ abstract class _Property implements Property {
   @override
   String get title;
 
-  /// Location where the property is situated.
+  /// Free-text address/location label as returned by the API.
   @override
-  Location get location;
+  String get address;
 
-  /// Representative pricing for the property.
+  /// Listed price.
   @override
-  PriceRange get priceRange;
+  num get price;
 
-  /// Maximum number of guests supported.
+  /// Discounted price, when the property has an active offer.
   @override
-  int get maxGuests;
+  num? get offerPrice;
 
-  /// Longer description. Nullable if not provided.
+  /// Average review score (0-5), null when the property has no reviews yet.
   @override
-  String? get description;
+  double? get reviewsAvg;
 
-  /// Number of bedrooms (optional as some listings may be studio-like).
+  /// Number of reviews backing [reviewsAvg].
   @override
-  int? get bedrooms;
+  int get reviewsCount;
 
-  /// Number of bathrooms.
+  /// Image URLs, in the order returned by the API. May be empty.
   @override
-  int? get bathrooms;
+  List<String> get imageUrls;
 
-  /// List of photo URLs. This is a business-level concept; transport
-  /// representation (DTO) will own URL formatting and validation.
+  /// Whether this result is a hotel rather than a standalone property.
   @override
-  List<String> get photoUrls;
+  bool get isHotel;
 
-  /// List of amenity identifiers or human strings describing available
-  /// amenities (e.g., "WiFi", "Air conditioning"). Kept generic.
+  /// Human-readable label for a promotional badge (e.g. "Sponsored"),
+  /// when the API attaches one.
   @override
-  List<String> get amenities;
-
-  /// Whether the property supports instant booking.
+  String? get featuredBadgeLabel;
   @override
-  bool get instantBook;
+  int? get bedroom;
+  @override
+  int? get beds;
+  @override
+  int? get bathroom;
+  @override
+  int? get maxGuest;
 
   /// Create a copy of Property
   /// with the given fields replaced by the non-null parameter values.

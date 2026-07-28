@@ -27,7 +27,7 @@ Future<void> setupDependencies() async {
       () => const Environment(
         baseUrl: String.fromEnvironment(
           'API_BASE_URL',
-          defaultValue: 'https://api.travela.dev',
+          defaultValue: 'https://search.travela.xyz',
         ),
       ),
     );

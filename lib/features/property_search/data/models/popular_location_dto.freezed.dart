@@ -21,15 +21,18 @@ PopularLocationDto _$PopularLocationDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PopularLocationDto {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name_bn')
+  String? get nameBn => throw _privateConstructorUsedError;
+  int? get order => throw _privateConstructorUsedError;
   double get lat => throw _privateConstructorUsedError;
   double get lng => throw _privateConstructorUsedError;
-  String? get within => throw _privateConstructorUsedError;
+  double? get within => throw _privateConstructorUsedError;
   @JsonKey(name: 'tier_1')
-  String? get tier1 => throw _privateConstructorUsedError;
+  double? get tier1 => throw _privateConstructorUsedError;
   @JsonKey(name: 'tier_2')
-  String? get tier2 => throw _privateConstructorUsedError;
+  double? get tier2 => throw _privateConstructorUsedError;
 
   /// Serializes this PopularLocationDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,13 +52,15 @@ abstract class $PopularLocationDtoCopyWith<$Res> {
   ) = _$PopularLocationDtoCopyWithImpl<$Res, PopularLocationDto>;
   @useResult
   $Res call({
-    String id,
+    int id,
     String name,
+    @JsonKey(name: 'name_bn') String? nameBn,
+    int? order,
     double lat,
     double lng,
-    String? within,
-    @JsonKey(name: 'tier_1') String? tier1,
-    @JsonKey(name: 'tier_2') String? tier2,
+    double? within,
+    @JsonKey(name: 'tier_1') double? tier1,
+    @JsonKey(name: 'tier_2') double? tier2,
   });
 }
 
@@ -76,6 +81,8 @@ class _$PopularLocationDtoCopyWithImpl<$Res, $Val extends PopularLocationDto>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? nameBn = freezed,
+    Object? order = freezed,
     Object? lat = null,
     Object? lng = null,
     Object? within = freezed,
@@ -87,11 +94,19 @@ class _$PopularLocationDtoCopyWithImpl<$Res, $Val extends PopularLocationDto>
             id: null == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                      as String,
+                      as int,
             name: null == name
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
                       as String,
+            nameBn: freezed == nameBn
+                ? _value.nameBn
+                : nameBn // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            order: freezed == order
+                ? _value.order
+                : order // ignore: cast_nullable_to_non_nullable
+                      as int?,
             lat: null == lat
                 ? _value.lat
                 : lat // ignore: cast_nullable_to_non_nullable
@@ -103,15 +118,15 @@ class _$PopularLocationDtoCopyWithImpl<$Res, $Val extends PopularLocationDto>
             within: freezed == within
                 ? _value.within
                 : within // ignore: cast_nullable_to_non_nullable
-                      as String?,
+                      as double?,
             tier1: freezed == tier1
                 ? _value.tier1
                 : tier1 // ignore: cast_nullable_to_non_nullable
-                      as String?,
+                      as double?,
             tier2: freezed == tier2
                 ? _value.tier2
                 : tier2 // ignore: cast_nullable_to_non_nullable
-                      as String?,
+                      as double?,
           )
           as $Val,
     );
@@ -128,13 +143,15 @@ abstract class _$$PopularLocationDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
+    int id,
     String name,
+    @JsonKey(name: 'name_bn') String? nameBn,
+    int? order,
     double lat,
     double lng,
-    String? within,
-    @JsonKey(name: 'tier_1') String? tier1,
-    @JsonKey(name: 'tier_2') String? tier2,
+    double? within,
+    @JsonKey(name: 'tier_1') double? tier1,
+    @JsonKey(name: 'tier_2') double? tier2,
   });
 }
 
@@ -154,6 +171,8 @@ class __$$PopularLocationDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? nameBn = freezed,
+    Object? order = freezed,
     Object? lat = null,
     Object? lng = null,
     Object? within = freezed,
@@ -165,11 +184,19 @@ class __$$PopularLocationDtoImplCopyWithImpl<$Res>
         id: null == id
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as int,
         name: null == name
             ? _value.name
             : name // ignore: cast_nullable_to_non_nullable
                   as String,
+        nameBn: freezed == nameBn
+            ? _value.nameBn
+            : nameBn // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        order: freezed == order
+            ? _value.order
+            : order // ignore: cast_nullable_to_non_nullable
+                  as int?,
         lat: null == lat
             ? _value.lat
             : lat // ignore: cast_nullable_to_non_nullable
@@ -181,15 +208,15 @@ class __$$PopularLocationDtoImplCopyWithImpl<$Res>
         within: freezed == within
             ? _value.within
             : within // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                  as double?,
         tier1: freezed == tier1
             ? _value.tier1
             : tier1 // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                  as double?,
         tier2: freezed == tier2
             ? _value.tier2
             : tier2 // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                  as double?,
       ),
     );
   }
@@ -201,6 +228,8 @@ class _$PopularLocationDtoImpl implements _PopularLocationDto {
   const _$PopularLocationDtoImpl({
     required this.id,
     required this.name,
+    @JsonKey(name: 'name_bn') this.nameBn,
+    this.order,
     required this.lat,
     required this.lng,
     this.within,
@@ -212,25 +241,30 @@ class _$PopularLocationDtoImpl implements _PopularLocationDto {
       _$$PopularLocationDtoImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String name;
+  @override
+  @JsonKey(name: 'name_bn')
+  final String? nameBn;
+  @override
+  final int? order;
   @override
   final double lat;
   @override
   final double lng;
   @override
-  final String? within;
+  final double? within;
   @override
   @JsonKey(name: 'tier_1')
-  final String? tier1;
+  final double? tier1;
   @override
   @JsonKey(name: 'tier_2')
-  final String? tier2;
+  final double? tier2;
 
   @override
   String toString() {
-    return 'PopularLocationDto(id: $id, name: $name, lat: $lat, lng: $lng, within: $within, tier1: $tier1, tier2: $tier2)';
+    return 'PopularLocationDto(id: $id, name: $name, nameBn: $nameBn, order: $order, lat: $lat, lng: $lng, within: $within, tier1: $tier1, tier2: $tier2)';
   }
 
   @override
@@ -240,6 +274,8 @@ class _$PopularLocationDtoImpl implements _PopularLocationDto {
             other is _$PopularLocationDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.nameBn, nameBn) || other.nameBn == nameBn) &&
+            (identical(other.order, order) || other.order == order) &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lng, lng) || other.lng == lng) &&
             (identical(other.within, within) || other.within == within) &&
@@ -249,8 +285,18 @@ class _$PopularLocationDtoImpl implements _PopularLocationDto {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, lat, lng, within, tier1, tier2);
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    name,
+    nameBn,
+    order,
+    lat,
+    lng,
+    within,
+    tier1,
+    tier2,
+  );
 
   /// Create a copy of PopularLocationDto
   /// with the given fields replaced by the non-null parameter values.
@@ -271,34 +317,41 @@ class _$PopularLocationDtoImpl implements _PopularLocationDto {
 
 abstract class _PopularLocationDto implements PopularLocationDto {
   const factory _PopularLocationDto({
-    required final String id,
+    required final int id,
     required final String name,
+    @JsonKey(name: 'name_bn') final String? nameBn,
+    final int? order,
     required final double lat,
     required final double lng,
-    final String? within,
-    @JsonKey(name: 'tier_1') final String? tier1,
-    @JsonKey(name: 'tier_2') final String? tier2,
+    final double? within,
+    @JsonKey(name: 'tier_1') final double? tier1,
+    @JsonKey(name: 'tier_2') final double? tier2,
   }) = _$PopularLocationDtoImpl;
 
   factory _PopularLocationDto.fromJson(Map<String, dynamic> json) =
       _$PopularLocationDtoImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get name;
+  @override
+  @JsonKey(name: 'name_bn')
+  String? get nameBn;
+  @override
+  int? get order;
   @override
   double get lat;
   @override
   double get lng;
   @override
-  String? get within;
+  double? get within;
   @override
   @JsonKey(name: 'tier_1')
-  String? get tier1;
+  double? get tier1;
   @override
   @JsonKey(name: 'tier_2')
-  String? get tier2;
+  double? get tier2;
 
   /// Create a copy of PopularLocationDto
   /// with the given fields replaced by the non-null parameter values.

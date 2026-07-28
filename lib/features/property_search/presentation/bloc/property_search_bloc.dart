@@ -5,7 +5,6 @@ import 'package:travela/core/errors/failures.dart';
 import 'package:travela/core/result/either.dart';
 import 'package:travela/core/result/result_utils.dart';
 import 'package:travela/features/property_search/domain/entities/guest_info.dart';
-import 'package:travela/features/property_search/domain/entities/location.dart';
 import 'package:travela/features/property_search/domain/entities/price_range.dart';
 import 'package:travela/features/property_search/domain/entities/property.dart';
 import 'package:travela/features/property_search/domain/entities/search_criteria.dart';
@@ -42,6 +41,7 @@ class PropertySearchBloc
 
   StreamSubscription<Either<Failure, SearchStreamEvent>>? _searchSubscription;
   int _searchGeneration = 0;
+  SearchCriteria? _lastCriteria;
 
   PropertySearchBloc(this._streamSearchProperties)
     : super(const PropertySearchState()) {
@@ -57,13 +57,16 @@ class PropertySearchBloc
         final SearchCriteria criteria;
         try {
           criteria = SearchCriteria(
-            location: e.location.isNotEmpty ? Location(name: e.location) : null,
+            location: e.location,
             checkIn: e.checkIn,
             checkOut: e.checkOut,
             priceRange: PriceRange(
               min: e.minPrice,
               max: e.maxPrice,
-              currency: e.currency,
+              // The search API takes a plain `min-max` price string with no
+              // currency concept; this is only a domain-level invariant
+              // holder, so the value here is never surfaced to the user.
+              currency: 'BDT',
             ),
             guestInfo: GuestInfo(
               adults: e.adults,
@@ -83,11 +86,15 @@ class PropertySearchBloc
           );
           return;
         }
+        _lastCriteria = criteria;
         await _startSearch(criteria, emit);
       },
       retryRequested: (e) async {
-        // No-op: presentation should re-dispatch searchSubmitted with the
-        // desired criteria.
+        final SearchCriteria? criteria = _lastCriteria;
+        if (criteria == null) {
+          return;
+        }
+        await _startSearch(criteria, emit);
       },
     );
   }

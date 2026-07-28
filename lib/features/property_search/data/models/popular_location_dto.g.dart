@@ -9,13 +9,15 @@ part of 'popular_location_dto.dart';
 _$PopularLocationDtoImpl _$$PopularLocationDtoImplFromJson(
   Map<String, dynamic> json,
 ) => _$PopularLocationDtoImpl(
-  id: json['id'] as String,
+  id: (json['id'] as num).toInt(),
   name: json['name'] as String,
+  nameBn: json['name_bn'] as String?,
+  order: (json['order'] as num?)?.toInt(),
   lat: (json['lat'] as num).toDouble(),
   lng: (json['lng'] as num).toDouble(),
-  within: json['within'] as String?,
-  tier1: json['tier_1'] as String?,
-  tier2: json['tier_2'] as String?,
+  within: (json['within'] as num?)?.toDouble(),
+  tier1: (json['tier_1'] as num?)?.toDouble(),
+  tier2: (json['tier_2'] as num?)?.toDouble(),
 );
 
 Map<String, dynamic> _$$PopularLocationDtoImplToJson(
@@ -23,6 +25,8 @@ Map<String, dynamic> _$$PopularLocationDtoImplToJson(
 ) => <String, dynamic>{
   'id': instance.id,
   'name': instance.name,
+  'name_bn': instance.nameBn,
+  'order': instance.order,
   'lat': instance.lat,
   'lng': instance.lng,
   'within': instance.within,

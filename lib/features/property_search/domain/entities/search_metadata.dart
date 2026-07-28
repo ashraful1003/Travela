@@ -2,24 +2,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'search_metadata.freezed.dart';
 
-/// Immutable metadata emitted at the start (or during) a progressive search.
-///
-/// Responsibility:
-/// - Carry opaque metadata produced by the backend (search id, estimates) that
-///   may be necessary for correlating streamed items or for follow-up requests.
-///
-/// Note: Keep this entity infrastructure-free; it intentionally avoids any
-/// transport or parsing concerns.
+/// Immutable metadata emitted by the single `meta` event that opens a
+/// streaming search, ahead of any `item` events.
 @freezed
 class SearchMetadata with _$SearchMetadata {
   const factory SearchMetadata({
-    /// Stable identifier for the search session (if provided by backend).
-    required String searchId,
+    /// Total number of results the search matched (shown as "N stays").
+    required int totalCount,
 
-    /// Optional estimated total number of results (may be null if unknown).
-    int? estimatedTotal,
+    /// Current page number, when the backend reports pagination.
+    int? page,
 
-    /// Time when the metadata/event was issued by the backend.
-    DateTime? timestamp,
+    /// Total number of pages available, when the backend reports pagination.
+    int? totalPages,
   }) = _SearchMetadata;
 }
