@@ -9,7 +9,7 @@ part 'price_range_dto.g.dart';
 /// {
 ///   "min": 10.0,
 ///   "max": 200.0,
-///   "currency": "USD"
+///   "currency": "BDT"
 /// }
 ///
 /// Purpose:
