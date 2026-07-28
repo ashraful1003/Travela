@@ -415,17 +415,6 @@ Appendix — quick conventions reference
 - Shared widgets: `lib/core/widgets/`
 - Mappers: `lib/features/.../data/mappers/`
 - Tests mirror lib structure under `test/`
-
-Final notes and next steps
-- Add this document to the repo root as `ENGINEERING_GUIDELINES.md` so all contributors can reference it.
-- Provide an onboarding `README.md` in `lib/features/` showing a template of what files to create for a new feature (no implementation — only filenames and where to place them).
-- Enforce these rules via CI (format, analyze) and linting rules in `analysis_options.yaml`. Consider adding additional lint rules (pedantic/strict lint) to enforce naming and immutability.
-
-If you want, I can:
-- Create the `ENGINEERING_GUIDELINES.md` file in the repository with this content.
-- Create small skeleton non-functional file scaffolding (only filenames and README templates) to guide future work (no implementation code).
-Tell me which of those you'd like me to perform next.
-
 ---
 Document generated on 2026-07-27
 
