@@ -47,3 +47,8 @@ linter:
     unnecessary_await_in_return: true
 
 # Keep additional project-specific rule tweaks here if needed.
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
