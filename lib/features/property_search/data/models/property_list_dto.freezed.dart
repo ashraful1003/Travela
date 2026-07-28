@@ -24,6 +24,7 @@ mixin _$PropertyListDto {
   List<PropertyDto> get items => throw _privateConstructorUsedError;
   int? get total => throw _privateConstructorUsedError;
   int? get page => throw _privateConstructorUsedError;
+  @JsonKey(name: 'page_size')
   int? get pageSize => throw _privateConstructorUsedError;
 
   /// Serializes this PropertyListDto to a JSON map.
@@ -43,7 +44,12 @@ abstract class $PropertyListDtoCopyWith<$Res> {
     $Res Function(PropertyListDto) then,
   ) = _$PropertyListDtoCopyWithImpl<$Res, PropertyListDto>;
   @useResult
-  $Res call({List<PropertyDto> items, int? total, int? page, int? pageSize});
+  $Res call({
+    List<PropertyDto> items,
+    int? total,
+    int? page,
+    @JsonKey(name: 'page_size') int? pageSize,
+  });
 }
 
 /// @nodoc
@@ -99,7 +105,12 @@ abstract class _$$PropertyListDtoImplCopyWith<$Res>
   ) = __$$PropertyListDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<PropertyDto> items, int? total, int? page, int? pageSize});
+  $Res call({
+    List<PropertyDto> items,
+    int? total,
+    int? page,
+    @JsonKey(name: 'page_size') int? pageSize,
+  });
 }
 
 /// @nodoc
@@ -151,7 +162,7 @@ class _$PropertyListDtoImpl implements _PropertyListDto {
     final List<PropertyDto> items = const <PropertyDto>[],
     this.total,
     this.page,
-    this.pageSize,
+    @JsonKey(name: 'page_size') this.pageSize,
   }) : _items = items;
 
   factory _$PropertyListDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -171,6 +182,7 @@ class _$PropertyListDtoImpl implements _PropertyListDto {
   @override
   final int? page;
   @override
+  @JsonKey(name: 'page_size')
   final int? pageSize;
 
   @override
@@ -222,7 +234,7 @@ abstract class _PropertyListDto implements PropertyListDto {
     final List<PropertyDto> items,
     final int? total,
     final int? page,
-    final int? pageSize,
+    @JsonKey(name: 'page_size') final int? pageSize,
   }) = _$PropertyListDtoImpl;
 
   factory _PropertyListDto.fromJson(Map<String, dynamic> json) =
@@ -235,6 +247,7 @@ abstract class _PropertyListDto implements PropertyListDto {
   @override
   int? get page;
   @override
+  @JsonKey(name: 'page_size')
   int? get pageSize;
 
   /// Create a copy of PropertyListDto

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travela/core/di/service_locator.dart';
+import 'package:travela/features/property_search/presentation/bloc/location_autocomplete_bloc.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_bloc.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_event.dart';
 import 'package:travela/features/property_search/presentation/bloc/property_search_state.dart';
@@ -26,8 +27,15 @@ class PropertySearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<PropertySearchBloc>(
-      create: (_) => sl.get<PropertySearchBloc>(),
+    return MultiBlocProvider(
+      providers: <BlocProvider<dynamic>>[
+        BlocProvider<PropertySearchBloc>(
+          create: (_) => sl.get<PropertySearchBloc>(),
+        ),
+        BlocProvider<LocationAutocompleteBloc>(
+          create: (_) => sl.get<LocationAutocompleteBloc>(),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Property Search'),

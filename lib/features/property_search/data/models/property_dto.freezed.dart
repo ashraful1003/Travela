@@ -24,13 +24,17 @@ mixin _$PropertyDto {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   LocationDto get location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'price_range')
   PriceRangeDto get priceRange => throw _privateConstructorUsedError;
+  @JsonKey(name: 'max_guests')
   int get maxGuests => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get bedrooms => throw _privateConstructorUsedError;
   int? get bathrooms => throw _privateConstructorUsedError;
+  @JsonKey(name: 'photo_urls')
   List<String> get photoUrls => throw _privateConstructorUsedError;
   List<String> get amenities => throw _privateConstructorUsedError;
+  @JsonKey(name: 'instant_book')
   bool get instantBook => throw _privateConstructorUsedError;
 
   /// Serializes this PropertyDto to a JSON map.
@@ -54,14 +58,14 @@ abstract class $PropertyDtoCopyWith<$Res> {
     String id,
     String title,
     LocationDto location,
-    PriceRangeDto priceRange,
-    int maxGuests,
+    @JsonKey(name: 'price_range') PriceRangeDto priceRange,
+    @JsonKey(name: 'max_guests') int maxGuests,
     String? description,
     int? bedrooms,
     int? bathrooms,
-    List<String> photoUrls,
+    @JsonKey(name: 'photo_urls') List<String> photoUrls,
     List<String> amenities,
-    bool instantBook,
+    @JsonKey(name: 'instant_book') bool instantBook,
   });
 
   $LocationDtoCopyWith<$Res> get location;
@@ -180,14 +184,14 @@ abstract class _$$PropertyDtoImplCopyWith<$Res>
     String id,
     String title,
     LocationDto location,
-    PriceRangeDto priceRange,
-    int maxGuests,
+    @JsonKey(name: 'price_range') PriceRangeDto priceRange,
+    @JsonKey(name: 'max_guests') int maxGuests,
     String? description,
     int? bedrooms,
     int? bathrooms,
-    List<String> photoUrls,
+    @JsonKey(name: 'photo_urls') List<String> photoUrls,
     List<String> amenities,
-    bool instantBook,
+    @JsonKey(name: 'instant_book') bool instantBook,
   });
 
   @override
@@ -280,14 +284,15 @@ class _$PropertyDtoImpl implements _PropertyDto {
     required this.id,
     required this.title,
     required this.location,
-    required this.priceRange,
-    required this.maxGuests,
+    @JsonKey(name: 'price_range') required this.priceRange,
+    @JsonKey(name: 'max_guests') required this.maxGuests,
     this.description,
     this.bedrooms,
     this.bathrooms,
+    @JsonKey(name: 'photo_urls')
     final List<String> photoUrls = const <String>[],
     final List<String> amenities = const <String>[],
-    this.instantBook = false,
+    @JsonKey(name: 'instant_book') this.instantBook = false,
   }) : _photoUrls = photoUrls,
        _amenities = amenities;
 
@@ -301,8 +306,10 @@ class _$PropertyDtoImpl implements _PropertyDto {
   @override
   final LocationDto location;
   @override
+  @JsonKey(name: 'price_range')
   final PriceRangeDto priceRange;
   @override
+  @JsonKey(name: 'max_guests')
   final int maxGuests;
   @override
   final String? description;
@@ -312,7 +319,7 @@ class _$PropertyDtoImpl implements _PropertyDto {
   final int? bathrooms;
   final List<String> _photoUrls;
   @override
-  @JsonKey()
+  @JsonKey(name: 'photo_urls')
   List<String> get photoUrls {
     if (_photoUrls is EqualUnmodifiableListView) return _photoUrls;
     // ignore: implicit_dynamic_type
@@ -329,7 +336,7 @@ class _$PropertyDtoImpl implements _PropertyDto {
   }
 
   @override
-  @JsonKey()
+  @JsonKey(name: 'instant_book')
   final bool instantBook;
 
   @override
@@ -404,14 +411,14 @@ abstract class _PropertyDto implements PropertyDto {
     required final String id,
     required final String title,
     required final LocationDto location,
-    required final PriceRangeDto priceRange,
-    required final int maxGuests,
+    @JsonKey(name: 'price_range') required final PriceRangeDto priceRange,
+    @JsonKey(name: 'max_guests') required final int maxGuests,
     final String? description,
     final int? bedrooms,
     final int? bathrooms,
-    final List<String> photoUrls,
+    @JsonKey(name: 'photo_urls') final List<String> photoUrls,
     final List<String> amenities,
-    final bool instantBook,
+    @JsonKey(name: 'instant_book') final bool instantBook,
   }) = _$PropertyDtoImpl;
 
   factory _PropertyDto.fromJson(Map<String, dynamic> json) =
@@ -424,8 +431,10 @@ abstract class _PropertyDto implements PropertyDto {
   @override
   LocationDto get location;
   @override
+  @JsonKey(name: 'price_range')
   PriceRangeDto get priceRange;
   @override
+  @JsonKey(name: 'max_guests')
   int get maxGuests;
   @override
   String? get description;
@@ -434,10 +443,12 @@ abstract class _PropertyDto implements PropertyDto {
   @override
   int? get bathrooms;
   @override
+  @JsonKey(name: 'photo_urls')
   List<String> get photoUrls;
   @override
   List<String> get amenities;
   @override
+  @JsonKey(name: 'instant_book')
   bool get instantBook;
 
   /// Create a copy of PropertyDto

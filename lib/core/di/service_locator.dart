@@ -19,7 +19,18 @@ Future<void> setupDependencies() async {
   // Register app-level singletons only if not already registered. Keep this
   // minimal to avoid surprising side-effects during tests.
   if (!sl.isRegistered<Environment>()) {
-    sl.registerLazySingleton<Environment>(Environment.new);
+    // Base URL is compile-time configurable via
+    // `--dart-define=API_BASE_URL=https://your.api.host`, so it never
+    // silently falls back to an empty string that would make every request
+    // malformed. The default below is a placeholder for local development.
+    sl.registerLazySingleton<Environment>(
+      () => const Environment(
+        baseUrl: String.fromEnvironment(
+          'API_BASE_URL',
+          defaultValue: 'https://api.travela.dev',
+        ),
+      ),
+    );
   }
 
   if (!sl.isRegistered<LoggerInterface>()) {

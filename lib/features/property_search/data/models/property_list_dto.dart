@@ -1,3 +1,4 @@
+// ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:travela/features/property_search/data/models/property_dto.dart';
@@ -17,14 +18,13 @@ part 'property_list_dto.g.dart';
 ///
 /// Purpose:
 /// - Encapsulate server-side pagination metadata along with property DTOs.
-@JsonSerializable(fieldRename: FieldRename.snake)
 @freezed
 class PropertyListDto with _$PropertyListDto {
   const factory PropertyListDto({
     @Default(<PropertyDto>[]) List<PropertyDto> items,
     int? total,
     int? page,
-    int? pageSize,
+    @JsonKey(name: 'page_size') int? pageSize,
   }) = _PropertyListDto;
 
   factory PropertyListDto.fromJson(Map<String, dynamic> json) =>
