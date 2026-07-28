@@ -1,8 +1,8 @@
 import 'package:travela/core/errors/failures.dart';
 import 'package:travela/core/result/either.dart';
 import 'package:travela/features/property_search/domain/entities/property.dart';
-import 'package:travela/features/property_search/domain/repositories/property_repository.dart';
 import 'package:travela/features/property_search/domain/entities/search_criteria.dart';
+import 'package:travela/features/property_search/domain/repositories/property_repository.dart';
 import 'package:travela/features/property_search/domain/usecases/usecase.dart';
 
 /// UseCase: SearchProperties

@@ -4,7 +4,7 @@ import 'package:travela/features/property_search/presentation/widgets/property_c
 
 /// Displays a vertical list of property cards.
 class PropertyList extends StatelessWidget {
-  const PropertyList({super.key, required this.properties});
+  const PropertyList({required this.properties, super.key});
 
   final List<Map<String, String>> properties;
 
@@ -17,8 +17,8 @@ class PropertyList extends StatelessWidget {
     return ListView.separated(
       itemCount: properties.length,
       separatorBuilder: (_, __) => const SizedBox(height: 8),
-      itemBuilder: (context, index) {
-        final item = properties[index];
+      itemBuilder: (BuildContext context, int index) {
+        final Map<String, String> item = properties[index];
         return PropertyCard(
           title: item['title'] ?? 'Untitled',
           subtitle: item['subtitle'] ?? '',

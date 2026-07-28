@@ -23,7 +23,7 @@ class DateRangeSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
+      children: <Widget>[
         Expanded(
           child: OutlinedButton.icon(
             icon: const Icon(Icons.calendar_today),

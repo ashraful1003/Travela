@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 /// Exposes [onChanged] callback with the selected [RangeValues].
 class PriceRangeSelector extends StatelessWidget {
   const PriceRangeSelector({
-    super.key,
-    required this.initialRange,
+    required this.initialRange, super.key,
     this.onChanged,
   });
 
@@ -20,7 +19,7 @@ class PriceRangeSelector extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             const Text('Price range', style: TextStyle(fontWeight: FontWeight.w600)),
             const SizedBox(height: 8),
             RangeSlider(

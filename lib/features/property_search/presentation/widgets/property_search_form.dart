@@ -16,12 +16,12 @@ class PropertySearchForm extends StatelessWidget {
   // Placeholder callbacks — replace with Bloc callbacks later
   void _onSearch({
     required String location,
-    DateTime? checkIn,
-    DateTime? checkOut,
     required int adults,
     required int children,
     required int infants,
     required RangeValues priceRange,
+    DateTime? checkIn,
+    DateTime? checkOut,
   }) {
     // Placeholder: integrate with Bloc on next sprint.
   }
@@ -33,10 +33,10 @@ class PropertySearchForm extends StatelessWidget {
     final RangeValues defaultRange = const RangeValues(50, 300);
 
     return LayoutBuilder(
-      builder: (context, constraints) {
+      builder: (BuildContext context, BoxConstraints constraints) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
+          children: <Widget>[
             const LocationField(),
             const SizedBox(height: 12),
             const DateRangeSelector(),
@@ -45,7 +45,7 @@ class PropertySearchForm extends StatelessWidget {
             const SizedBox(height: 12),
             PriceRangeSelector(
               initialRange: defaultRange,
-              onChanged: (range) {},
+              onChanged: (RangeValues range) {},
             ),
             const SizedBox(height: 16),
             SearchButton(

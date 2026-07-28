@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Search button used to submit the user's search criteria.
 class SearchButton extends StatelessWidget {
-  const SearchButton({super.key, required this.onPressed});
+  const SearchButton({required this.onPressed, super.key});
 
   final VoidCallback onPressed;
 

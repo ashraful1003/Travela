@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Simple property card used in the search results list.
 class PropertyCard extends StatelessWidget {
-  const PropertyCard({super.key, required this.title, this.subtitle, this.imageUrl});
+  const PropertyCard({required this.title, super.key, this.subtitle, this.imageUrl});
 
   final String title;
   final String? subtitle;
@@ -14,7 +14,7 @@ class PropertyCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
-          children: [
+          children: <Widget>[
             Container(
               width: 96,
               height: 72,
@@ -27,9 +27,9 @@ class PropertyCard extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: <Widget>[
                   Text(title, style: Theme.of(context).textTheme.titleMedium),
-                  if (subtitle != null) ...[
+                  if (subtitle != null) ...<Widget>[
                     const SizedBox(height: 6),
                     Text(subtitle!, style: Theme.of(context).textTheme.bodySmall),
                   ]

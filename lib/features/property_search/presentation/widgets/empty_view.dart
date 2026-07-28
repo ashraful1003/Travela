@@ -11,7 +11,7 @@ class EmptyView extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
+        children: <Widget>[
           Icon(
             Icons.search_off,
             size: 48,

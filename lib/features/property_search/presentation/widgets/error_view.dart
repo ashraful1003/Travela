@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Error state view with a retry callback hook.
 class ErrorView extends StatelessWidget {
-  const ErrorView({super.key, required this.message, this.onRetry});
+  const ErrorView({required this.message, super.key, this.onRetry});
 
   final String message;
   final VoidCallback? onRetry;
@@ -12,7 +12,7 @@ class ErrorView extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
+        children: <Widget>[
           Icon(Icons.error_outline, size: 48, color: Theme.of(context).colorScheme.error),
           const SizedBox(height: 12),
           Text(message, style: Theme.of(context).textTheme.bodyLarge),

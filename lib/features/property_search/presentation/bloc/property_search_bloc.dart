@@ -44,7 +44,7 @@ class PropertySearchBloc extends Bloc<PropertySearchEvent, PropertySearchState> 
         final List<Property> props = (result as Right).value;
 
         if (props.isEmpty) {
-          emit(state.copyWith(status: PropertySearchStatus.empty, properties: []));
+          emit(state.copyWith(status: PropertySearchStatus.empty, properties: <Property>[]));
         } else {
           emit(state.copyWith(status: PropertySearchStatus.success, properties: props));
         }

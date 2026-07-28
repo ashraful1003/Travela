@@ -6,10 +6,10 @@ class LoadingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: <Widget>[
           CircularProgressIndicator(),
           SizedBox(height: 12),
           Text('Loading results...'),
